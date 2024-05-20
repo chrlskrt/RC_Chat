@@ -1,5 +1,7 @@
 package com.example.rc_chat;
 
+import com.example.rc_chat.Database.DatabaseManager;
+import com.example.rc_chat.Database.SQLConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -40,6 +42,7 @@ public class SplashScreen extends Application {
     }
 
     public static void main(String[] args) {
+        DatabaseManager db = DatabaseManager.getInstance();
         launch();
     }
 }
