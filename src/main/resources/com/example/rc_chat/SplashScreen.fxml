@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="splashAnchor" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.SplashScreen">
+   <children>
+      <Label layoutX="255.0" layoutY="169.0" text="Login or Register" textFill="WHITE" />
+      <Button layoutX="232.0" layoutY="207.0" mnemonicParsing="false" onAction="#loginOnClick" text="Login" />
+      <Button layoutX="320.0" layoutY="207.0" mnemonicParsing="false" onAction="#registerOnClick" text="Register" />
+   </children>
+</AnchorPane>
