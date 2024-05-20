@@ -5,10 +5,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SQLConnection {
-    public static final String URL = "jdbc:mysql://insert_ip/";
+    /* FINAL PROJ CONNECTION */
+//    public static final String URL = "jdbc:mysql://insert_ip/";
+//    public static String DBName = "";
+//    public static final String USERNAME = "rccola";
+//    public static final String PASSWORD = "rccolachat";
+
+    /* TEMPORARY CONNECTION */
+    public static final String URL = "jdbc:mysql://localhost:3306/";
     public static String DBName = "";
-    public static final String USERNAME = "rccola";
-    public static final String PASSWORD = "rccolachat";
+    public static final String USERNAME = "root";
+    public static final String PASSWORD = "";
+
     public static Connection getConnection (){
         Connection c = null;
 

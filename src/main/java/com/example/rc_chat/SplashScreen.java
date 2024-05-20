@@ -3,7 +3,9 @@ package com.example.rc_chat;
 import com.example.rc_chat.Database.DatabaseManager;
 import com.example.rc_chat.Database.SQLConnection;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -13,6 +15,7 @@ import java.io.IOException;
 
 public class SplashScreen extends Application {
     public AnchorPane splashAnchor;
+    DatabaseManager dbManager = DatabaseManager.getInstance();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -23,22 +26,22 @@ public class SplashScreen extends Application {
         stage.show();
     }
 
-    public void loginOnClick() throws IOException {
-        AnchorPane a = splashAnchor;
-        a.getScene().getStylesheets().clear();
-
-        Parent p = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        a.getChildren().clear();
-        a.getChildren().add(p);
+    public void loginOnClick(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 700, 500);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Log-in Page");
     }
 
-    public void registerOnClick() throws IOException {
-        AnchorPane a = splashAnchor;
-        a.getScene().getStylesheets().clear();
-
-        Parent p = FXMLLoader.load(getClass().getResource("Register.fxml"));
-        a.getChildren().clear();
-        a.getChildren().add(p);
+    public void registerOnClick(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Register.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 700, 500);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Log-in Page");
     }
 
     public static void main(String[] args) {
