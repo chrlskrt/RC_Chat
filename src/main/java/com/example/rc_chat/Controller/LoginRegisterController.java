@@ -1,9 +1,7 @@
 package com.example.rc_chat.Controller;
 
-import com.example.rc_chat.Database.DatabaseManager;
-import com.example.rc_chat.Database.User;
 import com.example.rc_chat.Database.dbStatus;
-import com.example.rc_chat.SplashScreen;
+import com.example.rc_chat.RC_Chat;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +17,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
+
+import static com.example.rc_chat.RC_Chat.dbManager;
 
 public class LoginRegisterController {
     @FXML
@@ -31,14 +30,12 @@ public class LoginRegisterController {
     public Button btnRegisterUser;
     public TextField tf_logUsername;
     public PasswordField pf_logPassword;
-    DatabaseManager dbManager = DatabaseManager.getInstance();
-    User current_user = User.getInstance();
     public Alert alert = new Alert(Alert.AlertType.NONE);
 
     public void backRegOnClick() throws IOException {
         AnchorPane a = regAnchorPane;
         a.getScene().getStylesheets().clear();
-        FXMLLoader fxmlLoader = new FXMLLoader(SplashScreen.class.getResource("SplashScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("SplashScreen.fxml"));
 
         Parent p = fxmlLoader.load();
         a.getChildren().clear();
@@ -48,7 +45,7 @@ public class LoginRegisterController {
     public void backLoginOnClick() throws IOException {
         BorderPane a = loginBorderPane;
         a.getScene().getStylesheets().clear();
-        FXMLLoader fxmlLoader = new FXMLLoader(SplashScreen.class.getResource("SplashScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("SplashScreen.fxml"));
 
         Parent p = fxmlLoader.load();
         a.getChildren().clear();
@@ -98,7 +95,7 @@ public class LoginRegisterController {
     }
 
     private void goToHomePage(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SplashScreen.class.getResource("SplashScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("SplashScreen.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 700, 440);

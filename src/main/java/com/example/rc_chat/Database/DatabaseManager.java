@@ -2,6 +2,8 @@ package com.example.rc_chat.Database;
 
 import java.sql.*;
 
+import static com.example.rc_chat.RC_Chat.current_user;
+
 public class DatabaseManager {
     private static DatabaseManager instance;
     private DatabaseManager(){
@@ -15,7 +17,6 @@ public class DatabaseManager {
         return instance;
     }
 
-    User currentUser = User.getInstance();
     private void initializeDB(){
         Statement stmt;
         try (Connection c = SQLConnection.getConnection()){
@@ -98,9 +99,9 @@ public class DatabaseManager {
             ResultSet res = stmt.executeQuery();
 
             if (res.next()){
-                currentUser.setUser_id(res.getInt("user_id"));
-                currentUser.setUsername(res.getString("username"));
-                currentUser.setPassword(res.getString("password"));
+                current_user.setUser_id(res.getInt("user_id"));
+                current_user.setUsername(res.getString("username"));
+                current_user.setPassword(res.getString("password"));
 
                 return dbStatus.LOGIN_SUCCESS;
             }

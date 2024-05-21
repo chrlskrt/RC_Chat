@@ -2,7 +2,7 @@ package com.example.rc_chat;
 
 import com.example.rc_chat.Controller.LoginRegisterController;
 import com.example.rc_chat.Database.DatabaseManager;
-import com.example.rc_chat.Database.SQLConnection;
+import com.example.rc_chat.Database.User;
 import com.example.rc_chat.Database.dbStatus;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -20,17 +20,17 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SplashScreen extends Application {
+public class RC_Chat extends Application {
     public AnchorPane splashAnchor;
     public TextField tf_logUsername;
     public PasswordField pf_logPassword;
     public LoginRegisterController logregcon;
     public Alert alert = new Alert(Alert.AlertType.NONE);
-    DatabaseManager dbManager = DatabaseManager.getInstance();
-
+    public static DatabaseManager dbManager = DatabaseManager.getInstance();
+    public static User current_user = User.getInstance();
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(SplashScreen.class.getResource("SplashScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("SplashScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),700,440);
         stage.setTitle("RChat");
         stage.setScene(scene);
@@ -77,7 +77,7 @@ public class SplashScreen extends Application {
     }
 
     private void goToChatroom(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SplashScreen.class.getResource("MainChat.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("MainChat.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1300, 800);
