@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="regAnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.LoginRegisterController">
+<AnchorPane fx:id="regAnchorPane" maxHeight="440.0" maxWidth="700.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="700.0" style="-fx-background-color: black;" styleClass="anchor" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.LoginRegisterController">
+   <stylesheets>
+      <URL value="@styles.css" />
+   </stylesheets>
    <children>
-      <Label layoutX="71.0" layoutY="73.0" text="Enter username:" textFill="WHITE" />
-      <TextField fx:id="tf_regUsername" layoutX="71.0" layoutY="104.0" style="-fx-background-radius: 15px;" />
-      <Label layoutX="72.0" layoutY="161.0" text="Enter password:" textFill="WHITE" />
-      <PasswordField fx:id="pf_regPassword" layoutX="71.0" layoutY="188.0" style="-fx-background-radius: 15px;" />
-      <Label layoutX="338.0" layoutY="73.0" text="Enter birthday:" textFill="WHITE" />
-      <DatePicker layoutX="338.0" layoutY="104.0" />
-      <Label layoutX="338.0" layoutY="161.0" text="Gender:" textFill="WHITE" />
-      <ChoiceBox layoutX="332.0" layoutY="188.0" prefWidth="150.0" style="-fx-background-radius: 15px;" />
-      <Button fx:id="btnRegisterUser" layoutX="248.0" layoutY="272.0" mnemonicParsing="false" onAction="#btnRegisterUserClick" style="-fx-background-radius: 15px;" text="Register" />
-      <Button layoutX="72.0" layoutY="272.0" mnemonicParsing="false" onAction="#backRegOnClick" text="Back" />
+      <AnchorPane layoutX="200.0" layoutY="70.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #1F283D; -fx-background-radius: 20px;">
+         <children>
+
+            <TextField fx:id="tf_regUsername" layoutX="66.0" layoutY="96.0" promptText="Username" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px;" />
+            <PasswordField fx:id="pf_regPassword" layoutX="66.0" layoutY="137.0" promptText="Password" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px;" />
+            <PasswordField fx:id="pf_regConfirmPassword" layoutX="65.0" layoutY="179.0" promptText="Confirm Password" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px;" />
+            <Button layoutX="108.0" layoutY="230.0" mnemonicParsing="false" onAction="#btnRegisterUserClick" style="-fx-background-color: white; -fx-background-radius: 15px; -fx-padding: 5px 20px 5px 20px;" text="Register" />
+            <Button layoutX="262.0" layoutY="14.0" mnemonicParsing="false" onAction="#backRegOnClick" style="-fx-background-color: white; -fx-background-radius: 15px;" text="X" />
+            <Label layoutX="66.0" layoutY="43.0" text="Create Account" textFill="WHITE">
+               <font>
+                  <Font name="JetBrains Mono ExtraBold" size="20.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
    </children>
 </AnchorPane>

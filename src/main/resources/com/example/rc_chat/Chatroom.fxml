@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="700.0" styleClass="anchor" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <stylesheets>
+      <URL value="@styles.css" />
+   </stylesheets>
+   <children>
+      <BorderPane layoutX="25.0" layoutY="25.0" prefHeight="390.0" prefWidth="650.0" style="-fx-background-color: #1F283D; -fx-background-radius: 20px;">
+         <left>
+            <ToolBar prefHeight="650.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+              <items>
+                <Button mnemonicParsing="false" text="Button" />
+              </items>
+            </ToolBar>
+         </left></BorderPane>
+   </children>
+</AnchorPane>

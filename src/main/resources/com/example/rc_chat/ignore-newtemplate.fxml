@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="440.0" prefWidth="700.0" style="-fx-border-radius: 20px;" styleClass="anchor" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="305.0" layoutY="66.0" text="RChat" textFill="WHITE">
+         <font>
+            <Font name="JetBrains Mono ExtraBold" size="30.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="200.0" layoutY="120.0" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: #1F283D; -fx-background-radius: 20px;">
+         <children>
+            <TextField layoutX="70.0" layoutY="42.0" promptText="Username" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 20px;" />
+            <PasswordField layoutX="70.0" layoutY="79.0" promptText="Password" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 20px;" />
+            <Button layoutX="115.0" layoutY="129.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 15px; -fx-padding: 5px 20px 5px 20px;" text="Login" />
+         </children></AnchorPane>
+   </children>
+
+
+</AnchorPane>

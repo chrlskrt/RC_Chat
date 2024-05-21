@@ -101,7 +101,7 @@ public class LoginRegisterController {
         FXMLLoader fxmlLoader = new FXMLLoader(SplashScreen.class.getResource("SplashScreen.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 700, 500);
+        Scene scene = new Scene(root, 700, 440);
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Home Page");
