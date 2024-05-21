@@ -4,18 +4,31 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="700.0" styleClass="anchor" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="chatroom" fx:id="apChatroom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.ChatroomController">
    <stylesheets>
       <URL value="@styles.css" />
    </stylesheets>
    <children>
-      <BorderPane layoutX="25.0" layoutY="25.0" prefHeight="390.0" prefWidth="650.0" style="-fx-background-color: #1F283D; -fx-background-radius: 20px;">
-         <left>
-            <ToolBar prefHeight="650.0" prefWidth="150.0" BorderPane.alignment="CENTER">
-              <items>
-                <Button mnemonicParsing="false" text="Button" />
-              </items>
+      <HBox layoutX="43.0" layoutY="30.0" prefHeight="723.0" prefWidth="1215.0" style="-fx-background-color: black; -fx-background-radius: 20px;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <ToolBar nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefHeight="720.0" prefWidth="220.0" style="-fx-background-color: #37435D; -fx-background-radius: 20px 0px 0 20px;">
+               <items>
+                  <Separator orientation="VERTICAL" prefHeight="100.0" visible="false" />
+                <Button fx:id="btnStartChat" alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="220.0" style="-fx-padding: 5px 20px 5px 20px; -fx-background-radius: 20px; -fx-background-color: white;" text="Start a Chat" textAlignment="CENTER" />
+                  <Button mnemonicParsing="false" prefWidth="220.0" style="-fx-padding: 5px 20px 5px 20px; -fx-background-color: white; -fx-background-radius: 20px;" text="Profile" />
+               </items>
             </ToolBar>
-         </left></BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" HBox.hgrow="ALWAYS">
+               <bottom>
+                  <AnchorPane prefHeight="141.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextArea prefHeight="100.0" prefWidth="845.0" />
+                        <Button layoutX="898.0" layoutY="88.0" mnemonicParsing="false" text="Button" />
+                     </children>
+                  </AnchorPane>
+               </bottom>
+            </BorderPane>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

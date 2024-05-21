@@ -7,6 +7,7 @@ import com.example.rc_chat.Database.dbStatus;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -78,7 +80,21 @@ public class SplashScreen extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(SplashScreen.class.getResource("Chatroom.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 700, 440);
+        Scene scene = new Scene(root, 1300, 800);
+        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+//        root.setId("#chatroom");
+
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+
+        // Calculate the center position
+        double centerX = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) / 2;
+        double centerY = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) / 2;
+
+        // Set the stage position
+        stage.setX(centerX);
+        stage.setY(centerY);
+
         stage.setScene(scene);
         stage.show();
         stage.setTitle("RChat Room");
