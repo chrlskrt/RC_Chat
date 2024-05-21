@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" HBox.hgrow="ALWAYS">
+         <bottom>
+            <AnchorPane prefHeight="70.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextArea fx:id="txtareaMsg" layoutX="38.0" layoutY="15.0" prefHeight="40.0" prefWidth="845.0" />
+                  <Button fx:id="btnSendChat" layoutX="901.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-padding: 11px;" text="SEND" />
+               </children>
+            </AnchorPane>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>
