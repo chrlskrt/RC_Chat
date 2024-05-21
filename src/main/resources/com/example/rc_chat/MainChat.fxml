@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="chatroom" fx:id="apChatroom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.ChatroomController">
+   <stylesheets>
+      <URL value="@styles.css" />
+   </stylesheets>
+   <children>
+      <HBox layoutX="43.0" layoutY="30.0" prefHeight="723.0" prefWidth="1215.0" style="-fx-background-color: black; -fx-background-radius: 20px;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <ToolBar nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefHeight="720.0" prefWidth="220.0" style="-fx-background-color: #37435D; -fx-background-radius: 20px 0px 0 20px;">
+               <items>
+                  <Separator orientation="VERTICAL" prefHeight="32.0" prefWidth="9.0" visible="false" />
+                <Button fx:id="btnStartChat" alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="220.0" style="-fx-padding: 10px 20px 10px 20px; -fx-background-radius: 10px; -fx-background-color: white;" text="Start a Chat" textAlignment="CENTER" />
+                  <Separator orientation="VERTICAL" prefHeight="551.0" prefWidth="16.0" visible="false" />
+                  <AnchorPane accessibleRole="BUTTON" nodeOrientation="LEFT_TO_RIGHT" prefHeight="80.0" prefWidth="220.0">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="21.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image backgroundLoading="true" url="https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnProfile" layoutX="87.0" layoutY="37.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="110.0" style="-fx-background-color: white; -fx-padding: 5px 20px 5px 20px; -fx-background-radius: 10px;" text="Profile" />
+                        <Label fx:id="lblUsername" layoutX="87.0" layoutY="16.0" text="USERNAME" textFill="WHITE" />
+                     </children></AnchorPane>
+               </items>
+            </ToolBar>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" HBox.hgrow="ALWAYS">
+               <bottom>
+                  <AnchorPane prefHeight="70.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextArea fx:id="txtareaMsg" layoutX="38.0" layoutY="15.0" prefHeight="40.0" prefWidth="845.0" />
+                        <Button fx:id="btnSendChat" layoutX="901.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-padding: 11px;" text="SEND" />
+                     </children>
+                  </AnchorPane>
+               </bottom>
+            </BorderPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

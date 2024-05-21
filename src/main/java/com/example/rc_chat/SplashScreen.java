@@ -77,7 +77,7 @@ public class SplashScreen extends Application {
     }
 
     private void goToChatroom(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SplashScreen.class.getResource("Chatroom.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(SplashScreen.class.getResource("MainChat.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1300, 800);
