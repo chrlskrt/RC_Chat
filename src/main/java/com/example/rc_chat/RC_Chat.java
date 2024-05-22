@@ -1,5 +1,6 @@
 package com.example.rc_chat;
 
+import com.example.rc_chat.Controller.HomeController;
 import com.example.rc_chat.Controller.LoginRegisterController;
 import com.example.rc_chat.Database.DatabaseManager;
 import com.example.rc_chat.Database.User;
@@ -26,8 +27,8 @@ public class RC_Chat extends Application {
     public PasswordField pf_logPassword;
     public LoginRegisterController logregcon;
     public Alert alert = new Alert(Alert.AlertType.NONE);
-    public static DatabaseManager dbManager = DatabaseManager.getInstance();
-    public static User current_user = User.getInstance();
+    public static DatabaseManager dbManager = DatabaseManager.getInstance();;
+    public static User current_user = User.getInstance();;
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("SplashScreen.fxml"));
@@ -36,15 +37,6 @@ public class RC_Chat extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-//    public void loginOnClick(ActionEvent actionEvent) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-//        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//        Scene scene = new Scene(root, 700, 500);
-//        stage.setScene(scene);
-//        stage.show();
-//        stage.setTitle("Log-in Page");
-//    }
 
     public void registerOnClick(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Register.fxml"));
@@ -95,6 +87,10 @@ public class RC_Chat extends Application {
         stage.setX(centerX);
         stage.setY(centerY);
 
+        // loading the mainChat.fxml
+        HomeController hc = fxmlLoader.getController();
+        hc.loadPage();
+
         stage.setScene(scene);
         stage.show();
         stage.setTitle("RChat Room");
@@ -108,7 +104,6 @@ public class RC_Chat extends Application {
     }
 
     public static void main(String[] args) {
-        DatabaseManager db = DatabaseManager.getInstance();
         launch();
     }
 }

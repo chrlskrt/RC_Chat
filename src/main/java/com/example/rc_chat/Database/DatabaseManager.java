@@ -1,6 +1,10 @@
 package com.example.rc_chat.Database;
 
+import com.example.rc_chat.ChatMessage;
+
+import javax.xml.transform.Result;
 import java.sql.*;
+import java.util.ArrayList;
 
 import static com.example.rc_chat.RC_Chat.current_user;
 
@@ -38,7 +42,7 @@ public class DatabaseManager {
             stmt.execute(createTblUsersQuery);
 
             String createTblChatRoomQuery = "CREATE TABLE IF NOT EXISTS tblChatroom (" +
-                    "room_id INT AUTO_INCREMENT PRIMARY KEY)";
+                    "room_id INT AUTO_INCREMENT PRIMARY KEY )";
             stmt.execute(createTblChatRoomQuery);
 
             String createTblChatMessage = "CREATE TABLE IF NOT EXISTS tblChatMessage (" +
@@ -46,9 +50,10 @@ public class DatabaseManager {
                     "room_id INT NOT NULL," +
                     "sender_id INT NOT NULL," +
                     "message VARCHAR (250) NOT NULL," +
-                    "FOREIGN KEY (room_id) REFERENCES tblChatRoom (room_id) ON DELETE CASCADE," +
-                    "FOREIGN KEY (sender_id) REFERENCES tblUser (user_id) ON DELETE CASCADE )";
+                    "FOREIGN KEY (room_id) REFERENCES tblChatroom(room_id) ON DELETE CASCADE," +
+                    "FOREIGN KEY (sender_id) REFERENCES tblUser(user_id) ON DELETE CASCADE )";
             stmt.execute(createTblChatMessage);
+
             c.commit();
             System.out.println("Database with TABLES created successfully.");
         } catch (SQLException e) {
@@ -110,5 +115,34 @@ public class DatabaseManager {
         }
 
         return dbStatus.LOGIN_USER_NOT_FOUND;
+    }
+
+    public ArrayList<ChatMessage> getMessages (int room_id){
+        ArrayList<ChatMessage> messages = new ArrayList<>();
+
+        try (Connection conn = SQLConnection.getConnection();
+            PreparedStatement getMessagesStmt = conn.prepareStatement(
+                    "SELECT * FROM tblChatMessage WHERE room_id = ?"
+            )) {
+
+            getMessagesStmt.setInt(1, room_id);
+            ResultSet res = getMessagesStmt.executeQuery();
+
+            while (res.next()){
+                messages.add(
+                        new ChatMessage(
+                                res.getInt("room_id"),
+                                res.getInt("sender_id"),
+                                res.getInt("chat_id"),
+                                res.getString("message")
+                        )
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching messages");
+            e.printStackTrace();
+        }
+
+        return messages;
     }
 }

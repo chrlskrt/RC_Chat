@@ -73,31 +73,14 @@ public class LoginRegisterController {
         goToHomePage(actionEvent);
     }
 
-    public void btnLogInUserClick(ActionEvent actionEvent) throws IOException {
-        String username = tf_logUsername.getText();
-        String password = pf_logPassword.getText();
-
-        if (username.isEmpty() || password.isEmpty()){
-            showAlert(Alert.AlertType.ERROR, "Username or password is empty.");
-            return;
-        }
-
-        dbStatus logRes = dbManager.logUser(username, password);
-        if (logRes == dbStatus.LOGIN_USER_NOT_FOUND){
-            showAlert(Alert.AlertType.ERROR, "User not found.");
-            return;
-        } else if (logRes == dbStatus.LOGIN_ERROR){
-            showAlert(Alert.AlertType.WARNING, "Username or password is incorrect.");
-            return;
-        }
-
-        goToHomePage(actionEvent);
-    }
-
     private void goToHomePage(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("SplashScreen.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        HomeController hc = fxmlLoader.getController();
+        hc.loadPage();
+
         Scene scene = new Scene(root, 700, 440);
         stage.setScene(scene);
         stage.show();

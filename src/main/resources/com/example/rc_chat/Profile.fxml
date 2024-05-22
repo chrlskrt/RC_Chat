@@ -15,20 +15,30 @@
          <bottom>
             <AnchorPane prefHeight="141.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
          </bottom>
+
          <center>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="21.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 5;">
-               <image>
-                  <Image backgroundLoading="true" url="https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg" />
-               </image>
-            </ImageView>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Separator maxHeight="200.0" orientation="VERTICAL" prefHeight="150.0" visible="false" />
+                  <Label text="PROFILE" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="59.0" />
+                     </font>
+                  </Label>
+                  <Separator orientation="VERTICAL" prefHeight="21.0" prefWidth="67.0" visible="false" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" style="-fx-border: 5;">
+                     <image>
+                        <Image backgroundLoading="true" url="https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lbl_username" text="username" textFill="WHITE">
+                     <font>
+                        <Font name="Copperplate Gothic Light" size="34.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
          </center>
-         <top>
-            <Label text="PROFILE" textFill="WHITE" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Bank Gothic Medium BT" size="59.0" />
-               </font>
-            </Label>
-         </top>
       </BorderPane>
    </children>
 </AnchorPane>
