@@ -5,6 +5,7 @@ import com.example.rc_chat.Controller.LoginRegisterController;
 import com.example.rc_chat.Database.DatabaseManager;
 import com.example.rc_chat.Database.User;
 import com.example.rc_chat.Database.dbStatus;
+import com.example.rc_chat.Server.ChatClient;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +30,16 @@ public class RC_Chat extends Application {
     public Alert alert = new Alert(Alert.AlertType.NONE);
     public static DatabaseManager dbManager = DatabaseManager.getInstance();;
     public static User current_user = User.getInstance();;
+    public static ChatClient client;
+
+    static {
+        try {
+            client = ChatClient.getInstance();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("SplashScreen.fxml"));

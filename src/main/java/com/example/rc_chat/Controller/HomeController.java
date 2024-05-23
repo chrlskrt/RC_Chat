@@ -2,6 +2,7 @@ package com.example.rc_chat.Controller;
 
 import com.example.rc_chat.ChatMessage;
 import com.example.rc_chat.RC_Chat;
+import com.example.rc_chat.Server.ChatClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -40,6 +41,7 @@ public class HomeController {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("Chatroom-template.fxml"));
         AnchorPane profile_component = fxmlLoader.load();
 
+        ChatClient.getOut().println("4156"); //SENDS A CODE TO THE SERVER THAT IT WANTS TO START A NEW CHAT
         ChatroomController cc = fxmlLoader.getController();
         cc.loadChatroom();
 
