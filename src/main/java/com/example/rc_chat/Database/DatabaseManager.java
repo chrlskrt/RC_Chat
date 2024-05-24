@@ -41,7 +41,9 @@ public class DatabaseManager {
             stmt.execute(createTblUsersQuery);
 
             String createTblChatRoomQuery = "CREATE TABLE IF NOT EXISTS tblChatroom (" +
-                    "room_id INT AUTO_INCREMENT PRIMARY KEY )";
+                    "room_id INT AUTO_INCREMENT PRIMARY KEY," +
+                    "user_1 INT NOT NULL," +
+                    "user_2 INT NOT NULL)";
             stmt.execute(createTblChatRoomQuery);
 
             String createTblChatMessage = "CREATE TABLE IF NOT EXISTS tblChatMessage (" +
@@ -145,10 +147,12 @@ public class DatabaseManager {
         return messages;
     }
 
-    public int createChatRoom() {
+    public int createChatRoom(int clientId, int other_id) {
         try(Connection c = SQLConnection.getConnection();
-            PreparedStatement p = c.prepareStatement("INSERT INTO tblChatroom values(null)", Statement.RETURN_GENERATED_KEYS);) {
+            PreparedStatement p = c.prepareStatement("INSERT INTO tblChatroom(user_1, user_2) values(?, ?)", Statement.RETURN_GENERATED_KEYS);) {
 
+            p.setInt(1, clientId);
+            p.setInt(2, other_id);
             p.executeUpdate();
             ResultSet r = p.getGeneratedKeys();
 

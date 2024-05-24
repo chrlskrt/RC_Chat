@@ -33,7 +33,7 @@ public class RCChatServer {
     static class ClientHandler extends Thread { // DEALS WITH ALL THE SERVER SIDE LOGIC FOR THE CLIENT
         private final Socket socket;
         private PrintWriter out;
-        private String clientId;
+        private int clientId;
         private int chatRoomId;
 
         public ClientHandler(Socket socket) {
@@ -49,7 +49,7 @@ public class RCChatServer {
                 this.out = out;
 
                 // we get this clientID first before checking codes
-                clientId = in.readLine();
+                clientId = Integer.parseInt(in.readLine());
 
                 //waits for a command
                 String code;
@@ -104,7 +104,7 @@ public class RCChatServer {
                         new_room_clients.add(waitingClients.get(other_client));
 
                         synchronized (chatRooms) {
-                            chatRoomId = DatabaseManager.getInstance().createChatRoom(); //creates a new chatroom over onto the database and returns the ID
+                            chatRoomId = DatabaseManager.getInstance().createChatRoom(clientId, waitingClients.get(other_client).clientId); //creates a new chatroom over onto the database and returns the ID
                             chatRooms.put(chatRoomId, new_room_clients);
                             waitingClients.get(other_client).out.println(String.valueOf(chatRoomId)); //sends message to other client that it has been connected to a chatroom
                             waitingClients.get(other_client).chatRoomId = chatRoomId; //gives the same chatRoomID to the other client
