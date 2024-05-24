@@ -1,5 +1,7 @@
 package com.example.rc_chat.Server;
 
+import com.example.rc_chat.Database.DatabaseManager;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -102,9 +104,10 @@ public class RCChatServer {
                         new_room_clients.add(waitingClients.get(other_client));
 
                         synchronized (chatRooms) {
-                            chatRoomId = 12;
-                            chatRooms.put(chatRoomId, new_room_clients); //TODO: deal with Chatroom ID and database handling
+                            chatRoomId = DatabaseManager.getInstance().createChatRoom(); //creates a new chatroom over onto the database and returns the ID
+                            chatRooms.put(chatRoomId, new_room_clients);
                             waitingClients.get(other_client).out.println(String.valueOf(chatRoomId)); //sends message to other client that it has been connected to a chatroom
+                            waitingClients.get(other_client).chatRoomId = chatRoomId; //gives the same chatRoomID to the other client
                             waitingClients.remove(other_client); //removes both clients from waiting list so that they don't get referenced again in another Thread (ie. another client)
                             waitingClients.remove(this);
                             System.out.println("new room created");

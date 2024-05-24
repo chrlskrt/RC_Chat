@@ -2,7 +2,6 @@ package com.example.rc_chat.Database;
 
 import com.example.rc_chat.ChatMessage;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -144,5 +143,36 @@ public class DatabaseManager {
         }
 
         return messages;
+    }
+
+    public int createChatRoom() {
+        try(Connection c = SQLConnection.getConnection();
+            PreparedStatement p = c.prepareStatement("INSERT INTO tblChatroom values(null)", Statement.RETURN_GENERATED_KEYS);) {
+
+            p.executeUpdate();
+            ResultSet r = p.getGeneratedKeys();
+
+            if (r.next()) {
+                return r.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return 0;
+    }
+
+    public void saveMessage(int roomId, int userId, String message) {
+        try(Connection c = SQLConnection.getConnection();
+        PreparedStatement p = c.prepareStatement("INSERT INTO tblChatMessage(room_id, sender_id, message) values(?, ?, ?)", Statement.RETURN_GENERATED_KEYS);) {
+
+            p.setInt(1, roomId);
+            p.setInt(2, userId);
+            p.setString(3, message);
+
+            p.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

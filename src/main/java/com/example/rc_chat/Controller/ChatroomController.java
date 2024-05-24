@@ -1,6 +1,7 @@
 package com.example.rc_chat.Controller;
 
 import com.example.rc_chat.ChatMessage;
+import com.example.rc_chat.Database.DatabaseManager;
 import com.example.rc_chat.RC_Chat;
 import com.example.rc_chat.Server.ChatClient;
 import javafx.application.Platform;
@@ -48,6 +49,7 @@ public class ChatroomController {
         ChatClient.getOut().println(room_id + "|" + user_id + "|" + message); //MAIN MESSAGE TO SEND, Formatted as ROOM_ID|USER_ID|MESSAGE
 
         // if successfully sent? to server, add message to database
+        DatabaseManager.getInstance().saveMessage(room_id, user_id, message);
 
         txtareaMsg.clear();
     }
