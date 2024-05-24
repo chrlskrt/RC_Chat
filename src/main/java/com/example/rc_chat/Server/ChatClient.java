@@ -32,6 +32,5 @@ public class ChatClient {
         socket = new Socket(IP_ADDRESS, PORT);
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         ChatClient.out = out;
-        out.println(current_user.getUser_id()); // sends ID to the thing and waits for a code
     }
 }

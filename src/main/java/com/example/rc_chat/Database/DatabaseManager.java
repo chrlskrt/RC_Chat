@@ -1,6 +1,7 @@
 package com.example.rc_chat.Database;
 
 import com.example.rc_chat.ChatMessage;
+import com.example.rc_chat.Server.ChatClient;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -108,6 +109,7 @@ public class DatabaseManager {
                 current_user.setUser_id(res.getInt("user_id"));
                 current_user.setUsername(res.getString("username"));
                 current_user.setPassword(res.getString("password"));
+                ChatClient.getOut().println(current_user.getUser_id()); // sends ID to the thing and waits for a code
 
                 return dbStatus.LOGIN_SUCCESS;
             }
