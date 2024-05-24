@@ -31,9 +31,13 @@ public class ChatroomController {
     int room_id; //Current chat room ID, WILL CHANGE DEPENDING ON WHICH CHAT IT'S STILL ON ATM
 
     public void loadChatroom() throws IOException {
-        loadChats();
         Thread t = new Thread(new IncomingReader()); //STARTS MESSAGE READER, SEE LINE 91 FOR MORE DETAILS
         t.start();
+    }
+
+    public void setRoom_id(int room_id){
+        this.room_id = room_id;
+        loadChats();
     }
     public void btnSendChatClick(ActionEvent actionEvent) {
         String message = txtareaMsg.getText();
@@ -59,11 +63,37 @@ public class ChatroomController {
 
         vbox_chat_container.getChildren().clear();
         for (ChatMessage message : messages){
-            addChatMessage(message.getMessage());
+            addChatMessage(message.getSender_id(), message.getMessage());
         }
     }
 
-    public void addChatMessage(String message)  { // TODO : add user_id to see the diff kinds of people nga present sa chat
+    public void addChatMessage(int user_id, String message){
+        if (user_id != current_user.getUser_id()){
+            addChatMessage(message); // normal template
+            return;
+        }
+
+        FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("Chat-template-2.fxml")); // TODO: change template
+        AnchorPane message_component = null;
+
+        try {
+            message_component = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Label lbl_message = (Label) message_component.lookup("#lbl_chatOwnMessage");
+
+            lbl_message.setText(message);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        vbox_chat_container.getChildren().add(message_component);
+    }
+
+    public void addChatMessage(String message)  {
         FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("Chat-template.fxml"));
         AnchorPane message_component = null;
 
@@ -112,8 +142,8 @@ public class ChatroomController {
                 String fromServer;
                 while ((fromServer = in.readLine()) != null) { // constantly asks for messages
                     System.out.println(fromServer);
-                    String message = fromServer;
-                    Platform.runLater(()->addChatMessage(message)); // See Line 101
+                    String [] message = fromServer.split("\\|", 2);
+                    Platform.runLater(()->addChatMessage(Integer.parseInt(message[0]), message[1])); // See Line 101
                 }
             } catch (IOException e) {
                 e.printStackTrace();

@@ -17,7 +17,7 @@
                <items>
                   <Separator orientation="VERTICAL" prefHeight="32.0" prefWidth="9.0" visible="false" />
                 <Button fx:id="btnStartChat" alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnStartChatClick" prefHeight="27.0" prefWidth="220.0" style="-fx-padding: 10px 20px 10px 20px; -fx-background-radius: 10px; -fx-background-color: white;" text="Start a Chat" textAlignment="CENTER" />
-                  <Separator orientation="VERTICAL" prefHeight="551.0" prefWidth="16.0" visible="false" />
+                  <VBox fx:id="vbox_chatroom_container" prefHeight="548.0" prefWidth="220.0" />
                   <AnchorPane accessibleRole="BUTTON" nodeOrientation="LEFT_TO_RIGHT" prefHeight="80.0" prefWidth="220.0">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />

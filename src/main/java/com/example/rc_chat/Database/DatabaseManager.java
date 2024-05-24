@@ -5,6 +5,7 @@ import com.example.rc_chat.Server.ChatClient;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static com.example.rc_chat.RC_Chat.current_user;
 
@@ -44,7 +45,9 @@ public class DatabaseManager {
             String createTblChatRoomQuery = "CREATE TABLE IF NOT EXISTS tblChatroom (" +
                     "room_id INT AUTO_INCREMENT PRIMARY KEY," +
                     "user_1 INT NOT NULL," +
-                    "user_2 INT NOT NULL)";
+                    "user_2 INT NOT NULL," +
+                    "FOREIGN KEY (user_1) REFERENCES tblUser(user_id) ON DELETE CASCADE," +
+                    "FOREIGN KEY (user_2) REFERENCES tblUser(user_id) ON DELETE CASCADE )";
             stmt.execute(createTblChatRoomQuery);
 
             String createTblChatMessage = "CREATE TABLE IF NOT EXISTS tblChatMessage (" +
@@ -180,5 +183,27 @@ public class DatabaseManager {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public HashMap<Integer, String> getChatRooms(){
+        HashMap<Integer, String> rooms = new HashMap<>();
+
+        try (Connection conn = SQLConnection.getConnection();
+            PreparedStatement pStmt = conn.prepareStatement(
+                    "SELECT room_id, username FROM tblChatroom as r, tblUser as u " +
+                            "WHERE (r.user_1 = u.user_id OR r.user_2 = u.user_id) AND user_1 = ? OR user_2 = ?"
+            )) {
+            pStmt.setInt(1, current_user.getUser_id());
+            pStmt.setInt(2, current_user.getUser_id());
+
+            ResultSet res = pStmt.executeQuery();
+            while (res.next()){
+                rooms.put(res.getInt("room_id"), res.getString("username"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return rooms;
     }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="27.0" prefWidth="220.0" style="-fx-background-color: #37435D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.HomeController">
+   <children>
+       <Button fx:id="btnAccessPreviousChat" alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="220.0" style="-fx-padding: 10px 20px 10px 20px; -fx-background-radius: 10px; -fx-background-color: white;" text="Start a Chat" textAlignment="CENTER" />
+   </children>
+</AnchorPane>
