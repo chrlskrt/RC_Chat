@@ -27,9 +27,6 @@ public class LoginRegisterController {
     public BorderPane loginBorderPane;
     public TextField tf_regUsername;
     public PasswordField pf_regPassword;
-    public Button btnRegisterUser;
-    public TextField tf_logUsername;
-    public PasswordField pf_logPassword;
     public Alert alert = new Alert(Alert.AlertType.NONE);
 
     public void backRegOnClick() throws IOException {
@@ -77,9 +74,6 @@ public class LoginRegisterController {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("SplashScreen.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-        HomeController hc = fxmlLoader.getController();
-        hc.loadPage();
 
         Scene scene = new Scene(root, 700, 440);
         stage.setScene(scene);

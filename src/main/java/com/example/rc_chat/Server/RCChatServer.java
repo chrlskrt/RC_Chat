@@ -127,8 +127,8 @@ public class RCChatServer {
                     }
 
                     System.out.println(inputLine);
-                    String[] message = inputLine.split("\\|", 3);
-                    sendMessageToChatRoom(Integer.parseInt(message[0]), message[2]); //any new messages will be processed in this function
+                    String[] message = inputLine.split("\\|", 2);
+                    sendMessageToChatRoom(Integer.parseInt(message[0]), message[1] ); //any new messages will be processed in this function
                 }
             } catch (SocketException s) {
                 sendMessageToChatRoom(chatRoomId, clientId + " has disconnected");
