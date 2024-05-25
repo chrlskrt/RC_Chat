@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="loadingScreen" style="-fx-background-color: #1F283D;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.LoadingScreenController">
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="239.0" layoutY="191.0" text="This is a loading screen" textFill="WHITE" />
+   </children>
+</AnchorPane>

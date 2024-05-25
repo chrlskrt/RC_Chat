@@ -77,26 +77,39 @@ public class RC_Chat extends Application {
             return;
         }
         goToChatroom(actionEvent);
+//        loadScreen();
+    }
+
+    public void loadScreen() throws IOException {
+        AnchorPane ap = splashAnchor;
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+
+//        FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("LoadingScreen.fxml"));
+        Parent p = FXMLLoader.load(getClass().getResource("LoadingScreen.fxml"));
+        p.setLayoutY(bounds.getMinY());
+        p.setLayoutX(bounds.getMinX());
+
+        ap.setBackground(null);
+        ap.getChildren().clear();
+        ap.getChildren().add(p);
     }
 
     private void goToChatroom(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("MainChat.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 1300, 800);
+        Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-//        root.setId("#chatroom");
 
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
 
-        // Calculate the center position
-        double centerX = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) / 2;
-        double centerY = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) / 2;
-
-        // Set the stage position
-        stage.setX(centerX);
-        stage.setY(centerY);
+        // FULL SCREEN
+        stage.setX(bounds.getMinX());
+        stage.setY(bounds.getMinY());
+        stage.setWidth(bounds.getWidth());
+        stage.setHeight(bounds.getHeight());
 
         // loading the mainChat.fxml
         HomeController hc = fxmlLoader.getController();

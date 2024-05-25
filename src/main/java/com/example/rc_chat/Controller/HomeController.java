@@ -42,6 +42,7 @@ public class HomeController {
     public void btnGoToProfileClick(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("Profile.fxml"));
         AnchorPane profile_component = fxmlLoader.load();
+
         ProfileController pc = fxmlLoader.getController();
         pc.loadPage();
         cHBox.getChildren().remove(1);
@@ -71,6 +72,10 @@ public class HomeController {
 
         cHBox.getChildren().remove(1);
         cHBox.getChildren().add(profile_component);
+    }
+
+    public void clearMainChat() {
+        apChatroom.getChildren().clear();
     }
 
     void showAlert(Alert.AlertType alertType, String content){

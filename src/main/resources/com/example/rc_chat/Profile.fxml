@@ -2,43 +2,64 @@
 
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.ProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.ProfileController">
    <stylesheets>
       <URL value="@styles.css" />
    </stylesheets>
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <bottom>
-            <AnchorPane prefHeight="141.0" prefWidth="300.0" BorderPane.alignment="CENTER" />
-         </bottom>
-
-         <center>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="720.0" prefWidth="1000.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" AnchorPane.bottomAnchor="292.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="168.0" prefWidth="1000.0" style="-fx-background-color: pink; -fx-background-radius: 0px 20px 0px 0px;" BorderPane.alignment="CENTER">
                <children>
-                  <Separator maxHeight="200.0" orientation="VERTICAL" prefHeight="150.0" visible="false" />
-                  <Label text="PROFILE" textFill="WHITE" BorderPane.alignment="CENTER">
+                  <Label layoutX="194.0" layoutY="132.0" style="-fx-background-color: #49B572; -fx-background-radius: 15px; -fx-label-padding: 0px 20px 0px 20px;" text="Online" textFill="WHITE">
                      <font>
-                        <Font name="Copperplate Gothic Bold" size="59.0" />
-                     </font>
-                  </Label>
-                  <Separator orientation="VERTICAL" prefHeight="21.0" prefWidth="67.0" visible="false" />
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" style="-fx-border: 5;">
-                     <image>
-                        <Image backgroundLoading="true" url="https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="lbl_username" text="username" textFill="WHITE">
-                     <font>
-                        <Font name="Copperplate Gothic Light" size="34.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                </children>
-            </VBox>
+            </AnchorPane>
+         </top>
+         <center>
+            <AnchorPane prefHeight="563.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="profButtons" layoutX="57.0" layoutY="104.0" prefHeight="176.0" prefWidth="500.0">
+                     <children>
+                        <Button fx:id="btnLogOut" layoutX="14.0" layoutY="138.0" mnemonicParsing="false" onAction="#LogOutOnClick" style="-fx-background-color: white; -fx-background-radius: 20px; -fx-padding: 5px 20px 5px 20px;" text="Log Out">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnEditAcc" layoutX="10.0" layoutY="25.0" mnemonicParsing="false" onAction="#EditAccOnClick" style="-fx-background-color: white; -fx-background-radius: 20px; -fx-padding: 5px 20px 5px 20px;" text="Edit Account">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="editDeleteAcc" layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#deleteAccOnClick" style="-fx-background-color: white; -fx-background-radius: 20px; -fx-padding: 5px 20px 5px 20px;" text="Delete Account">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <Circle fx:id="circleImg" fill="DODGERBLUE" layoutX="108.0" radius="70.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label fx:id="lbl_username" layoutX="193.0" text="usern" textFill="WHITE">
+                     <font>
+                        <Font size="30.0" />
+                     </font></Label>
+                  <Label fx:id="lbl_userID" layoutX="279.0" layoutY="8.0" text="userID" textFill="WHITE">
+                     <font>
+                        <Font name="System Italic" size="20.0" />
+                     </font></Label>
+               </children>
+            </AnchorPane>
          </center>
+         <bottom>
+            <AnchorPane prefHeight="0.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>

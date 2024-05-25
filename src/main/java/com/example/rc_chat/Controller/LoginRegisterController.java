@@ -39,16 +39,6 @@ public class LoginRegisterController {
         a.getChildren().add(p);
     }
 
-    public void backLoginOnClick() throws IOException {
-        BorderPane a = loginBorderPane;
-        a.getScene().getStylesheets().clear();
-        FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("SplashScreen.fxml"));
-
-        Parent p = fxmlLoader.load();
-        a.getChildren().clear();
-        a.getChildren().add(p);
-    }
-
     public void btnRegisterUserClick(ActionEvent actionEvent) throws IOException {
         String username = tf_regUsername.getText();
         String password = pf_regPassword.getText();
@@ -70,7 +60,7 @@ public class LoginRegisterController {
         goToHomePage(actionEvent);
     }
 
-    private void goToHomePage(ActionEvent actionEvent) throws IOException {
+    public void goToHomePage(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("SplashScreen.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
