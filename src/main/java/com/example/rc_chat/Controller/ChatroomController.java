@@ -32,6 +32,13 @@ public class ChatroomController {
     public Alert alert = new Alert(Alert.AlertType.NONE);
     public AnchorPane ap_chatroom;
     int room_id; //Current chat room ID, WILL CHANGE DEPENDING ON WHICH CHAT IT'S STILL ON ATM
+    static boolean newChat = false;
+
+    public static void setNewChat(boolean newChat) {
+        ChatroomController.newChat = newChat;
+        notifyObserver(); //TODO: Add observer (get HomeController and put it in the parameter)
+    }
+
 
     public void loadChatroom() throws IOException {
         Thread t = new Thread(new IncomingReader()); //STARTS MESSAGE READER, SEE LINE 91 FOR MORE DETAILS
@@ -124,6 +131,10 @@ public class ChatroomController {
         alert.showAndWait();
     }
 
+    private static void notifyObserver(ButtonObserver observer) {
+        observer.update();
+    }
+
     /*I N C O M I N G   R E A D E R   T A S K
     * PURPOSE: A separate thread that will listen for any new messages from the server.
     *          It is initialized when chats are loaded.
@@ -142,9 +153,7 @@ public class ChatroomController {
             try (BufferedReader in = new BufferedReader(new InputStreamReader(ChatClient.getSocket().getInputStream())); //Takes in messages from the server
             ) {
                 room_id = Integer.parseInt(in.readLine()); // scans the room ID first
-
-                Thread t = new Thread(new HomeController.newButton());
-                t.start();
+                setNewChat(true);
 
                 String fromServer;
                 while ((fromServer = in.readLine()) != null) { // constantly asks for messages

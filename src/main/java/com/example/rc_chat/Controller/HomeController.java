@@ -5,6 +5,7 @@ import com.example.rc_chat.ChatRoom;
 import com.example.rc_chat.RC_Chat;
 import com.example.rc_chat.Server.ChatClient;
 import javafx.application.Platform;
+import javafx.beans.Observable;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,9 +23,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.rc_chat.Controller.ChatroomController.newChat;
 import static com.example.rc_chat.RC_Chat.*;
 
-public class HomeController {
+public class HomeController implements ButtonObserver{
     public AnchorPane apChatroom;
     public HBox cHBox;
     public Label lblUsername;
@@ -85,8 +87,10 @@ public class HomeController {
         alert.showAndWait();
     }
 
-    public static void testing(){
+    public void testing(){
         System.out.println("yesy duefhafh");
+
+//        vbox_chatroom_container.getChildren().add();
     }
     private void loadChatRoomButtons(){
         /* Buttons for previous chats */
@@ -124,7 +128,7 @@ public class HomeController {
         }
     }
 
-    private static void addChatButton(){
+    private void addChatButton(){
 //        HBox haha = (HBox) ap_chatroom.getParent();
 //        String ewie = haha.getId();
 //        System.out.println(ewie);
@@ -132,7 +136,13 @@ public class HomeController {
         testing();
     }
 
-    public static class newButton extends Task<Void> {
+    @Override
+    public void update() {
+        Thread t = new Thread(new newButton());
+        t.start();
+    }
+
+    public class newButton extends Task<Void> {
 
         public newButton() {
 
@@ -140,8 +150,13 @@ public class HomeController {
 
         @Override
         protected Void call() throws Exception {
-            Platform.runLater(()->addChatButton());
-            return null;
+            while (true) {
+                if (newChat) {
+                    Platform.runLater(()->addChatButton());
+                    newChat = false;
+                }
+            }
+//            return null;
         }
     }
 }
