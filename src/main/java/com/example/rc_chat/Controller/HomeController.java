@@ -128,35 +128,62 @@ public class HomeController implements ButtonObserver{
         }
     }
 
-    private void addChatButton(){
+    public void addChatButton(int room_id){
 //        HBox haha = (HBox) ap_chatroom.getParent();
 //        String ewie = haha.getId();
 //        System.out.println(ewie);
-
+        System.out.println(room_id);
         testing();
+
+        FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("Chat-Button-Template.fxml"));
+        AnchorPane chatroomButton;
+        try {
+            chatroomButton = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            Button btnAccessPreviousChat = (Button) chatroomButton.lookup("#btnAccessPreviousChat");
+
+            btnAccessPreviousChat.setText("NEW ROOM");
+            btnAccessPreviousChat.setVisible(true);
+            btnAccessPreviousChat.setOnAction(e -> {
+                try {
+                    btnGoToPreviousChat(e, room_id);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        }
+
+        vbox_chatroom_container.getChildren().add(chatroomButton);
+        System.out.println("addded shd be");
     }
 
     @Override
-    public void update() {
-        Thread t = new Thread(new newButton());
-        t.start();
+    public void update(int room_id) {
+        if (newChat){
+            Thread t = new Thread(new newButton(room_id));
+            t.start();
+            newChat = false;
+        }
     }
 
     public class newButton extends Task<Void> {
-
-        public newButton() {
-
+        int room_id;
+        public newButton(int room_id) {
+            this.room_id = room_id;
         }
 
         @Override
         protected Void call() throws Exception {
-            while (true) {
-                if (newChat) {
-                    Platform.runLater(()->addChatButton());
-                    newChat = false;
-                }
-            }
-//            return null;
+                    Platform.runLater(()->addChatButton(room_id));
+
+                return null;
         }
     }
 }

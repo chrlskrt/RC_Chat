@@ -31,12 +31,18 @@ public class ChatroomController {
     public TextArea txtareaMsg;
     public Alert alert = new Alert(Alert.AlertType.NONE);
     public AnchorPane ap_chatroom;
-    int room_id; //Current chat room ID, WILL CHANGE DEPENDING ON WHICH CHAT IT'S STILL ON ATM
+    private static int room_id; //Current chat room ID, WILL CHANGE DEPENDING ON WHICH CHAT IT'S STILL ON ATM
     static boolean newChat = false;
 
-    public static void setNewChat(boolean newChat) {
+    public static void setNewChat(boolean newChat) throws IOException {
         ChatroomController.newChat = newChat;
-        notifyObserver(); //TODO: Add observer (get HomeController and put it in the parameter)
+
+        System.out.println("oks pa l40");
+        FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("MainChat.fxml"));System.out.println("oks pa l41");
+        Parent root = loader.load(); System.out.println("oks pa l42");
+        HomeController hc = loader.getController();
+//        hc.testing();
+        notifyObserver(hc); //TODO: Add observer (get HomeController and put it in the parameter)
     }
 
 
@@ -132,7 +138,7 @@ public class ChatroomController {
     }
 
     private static void notifyObserver(ButtonObserver observer) {
-        observer.update();
+        observer.update(room_id);
     }
 
     /*I N C O M I N G   R E A D E R   T A S K
@@ -153,7 +159,13 @@ public class ChatroomController {
             try (BufferedReader in = new BufferedReader(new InputStreamReader(ChatClient.getSocket().getInputStream())); //Takes in messages from the server
             ) {
                 room_id = Integer.parseInt(in.readLine()); // scans the room ID first
-                setNewChat(true);
+                Platform.runLater(()-> {
+                    try {
+                        setNewChat(true);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
 
                 String fromServer;
                 while ((fromServer = in.readLine()) != null) { // constantly asks for messages
