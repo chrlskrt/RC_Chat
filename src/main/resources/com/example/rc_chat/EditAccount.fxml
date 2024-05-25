@@ -4,23 +4,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="200.0" prefWidth="500.0" style="-fx-background-radius: 15px; -fx-border-radius: 15px; -fx-background-color: #414B63;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <TextField layoutX="55.0" layoutY="70.0" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px; -fx-text-fill:white" />
-    <PasswordField layoutX="55.0" layoutY="148.0" promptText="Password" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px; -fx-text-fill:white" />
-    <Label layoutX="55.0" layoutY="48.0" text="USERNAME" textFill="WHITE">
+<AnchorPane prefHeight="200.0" prefWidth="600.0" style="-fx-background-radius: 15px; -fx-border-radius: 15px; -fx-background-color: #414B63;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <TextField layoutX="53.0" layoutY="58.0" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px; -fx-text-fill:white" />
+    <PasswordField layoutX="53.0" layoutY="136.0" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px; -fx-text-fill:white" />
+    <Label layoutX="53.0" layoutY="36.0" text="NEW USERNAME" textFill="WHITE">
       <font>
          <Font name="System Bold" size="15.0" />
       </font>
    </Label>
-   <Label layoutX="55.0" layoutY="127.0" text="PASSWORD" textFill="WHITE">
+   <Label layoutX="53.0" layoutY="115.0" text="NEW PASSWORD" textFill="WHITE">
       <font>
          <Font name="System Bold" size="15.0" />
       </font></Label>
-   <Button layoutX="278.0" layoutY="146.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Save Changes">
+   <Button layoutX="449.0" layoutY="130.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Save Changes">
       <font>
          <Font size="15.0" />
       </font></Button>
-   <Button layoutX="407.0" layoutY="146.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Cancel">
+   <Button layoutX="497.0" layoutY="90.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Cancel">
       <font>
          <Font size="15.0" />
       </font></Button>
