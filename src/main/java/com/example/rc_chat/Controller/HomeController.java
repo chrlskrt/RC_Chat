@@ -1,6 +1,7 @@
 package com.example.rc_chat.Controller;
 
 import com.example.rc_chat.ChatMessage;
+import com.example.rc_chat.ChatRoom;
 import com.example.rc_chat.RC_Chat;
 import com.example.rc_chat.Server.ChatClient;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,39 +34,7 @@ public class HomeController {
     public void loadPage(){
         lblUsername.setText(current_user.getUsername());
 
-        /* Buttons for previous chats */
-        HashMap<Integer, String> rooms = dbManager.getChatRooms();
-
-        vbox_chatroom_container.getChildren().clear();
-
-        for (Map.Entry<Integer, String> room : rooms.entrySet()){
-            FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("Chat-Button-Template.fxml"));
-            AnchorPane chatroomButton;
-            try {
-                chatroomButton = loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            try {
-                Button btnAccessPreviousChat = (Button) chatroomButton.lookup("#btnAccessPreviousChat");
-
-                btnAccessPreviousChat.setText(room.getValue());
-
-                btnAccessPreviousChat.setOnAction(e -> {
-                    try {
-                        btnGoToPreviousChat(e, room.getKey());
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                });
-
-            } catch (Exception e){
-                throw new RuntimeException(e);
-            }
-
-            vbox_chatroom_container.getChildren().add(chatroomButton);
-        }
+        loadChatRoomButtons();
     }
 
     public void btnGoToProfileClick(ActionEvent event) throws IOException {
@@ -92,7 +62,7 @@ public class HomeController {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("Chatroom-template.fxml"));
         AnchorPane profile_component = fxmlLoader.load();
 
-        ChatClient.getOut().println("9104"); //SENDS A CODE TO THE SERVER THAT IT WANTS TO START A NEW CHAT
+//        ChatClient.getOut().println("9104"); //SENDS A CODE TO THE SERVER THAT IT WANTS TO CONTINUE PREVIOUS CHAT
         ChatroomController cc = fxmlLoader.getController();
         cc.loadChatroom();
         cc.setRoom_id(room_id);
@@ -107,4 +77,44 @@ public class HomeController {
         alert.setHeaderText(null);
         alert.showAndWait();
     }
+
+    public void testing(){
+        System.out.println("yesy duefhafh");
+    }
+    private void loadChatRoomButtons(){
+        /* Buttons for previous chats */
+        ArrayList<ChatRoom> rooms = dbManager.getChatRooms();
+
+        vbox_chatroom_container.getChildren().clear();
+
+        for (ChatRoom room : rooms){
+            FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("Chat-Button-Template.fxml"));
+            AnchorPane chatroomButton;
+            try {
+                chatroomButton = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            try {
+                Button btnAccessPreviousChat = (Button) chatroomButton.lookup("#btnAccessPreviousChat");
+
+                btnAccessPreviousChat.setText(room.getOtherUser());
+
+                btnAccessPreviousChat.setOnAction(e -> {
+                    try {
+                        btnGoToPreviousChat(e, room.getRoom_id());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+
+            } catch (Exception e){
+                throw new RuntimeException(e);
+            }
+
+            vbox_chatroom_container.getChildren().add(chatroomButton);
+        }
+    }
+
 }

@@ -8,11 +8,13 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.BufferedReader;
@@ -28,6 +30,7 @@ public class ChatroomController {
     public Button btnSendChat;
     public TextArea txtareaMsg;
     public Alert alert = new Alert(Alert.AlertType.NONE);
+    public AnchorPane ap_chatroom;
     int room_id; //Current chat room ID, WILL CHANGE DEPENDING ON WHICH CHAT IT'S STILL ON ATM
 
     public void loadChatroom() throws IOException {
@@ -59,7 +62,7 @@ public class ChatroomController {
     }
 
     private void loadChats(){
-        ArrayList<ChatMessage> messages = dbManager.getMessages(1);
+        ArrayList<ChatMessage> messages = dbManager.getMessages(room_id);
 
         vbox_chat_container.getChildren().clear();
         for (ChatMessage message : messages){
@@ -139,6 +142,12 @@ public class ChatroomController {
             try (BufferedReader in = new BufferedReader(new InputStreamReader(ChatClient.getSocket().getInputStream())); //Takes in messages from the server
             ) {
                 room_id = Integer.parseInt(in.readLine()); // scans the room ID first
+
+                if (room_id != 0){
+                    System.out.println("yey success");
+//                    Platform.runLater(()->addChatButton());
+                }
+
                 String fromServer;
                 while ((fromServer = in.readLine()) != null) { // constantly asks for messages
                     System.out.println(fromServer);
@@ -150,5 +159,15 @@ public class ChatroomController {
             }
             return null;
         }
+    }
+
+    private void addChatButton(){
+//        HBox haha = (HBox) ap_chatroom.getParent();
+//        String ewie = haha.getId();
+//        System.out.println(ewie);
+
+        FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("MainChat.fxml"));
+        HomeController hc = loader.getController();
+        hc.testing();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.rc_chat.Database;
 
 import com.example.rc_chat.ChatMessage;
+import com.example.rc_chat.ChatRoom;
 import com.example.rc_chat.Server.ChatClient;
 
 import java.sql.*;
@@ -185,20 +186,31 @@ public class DatabaseManager {
         }
     }
 
-    public HashMap<Integer, String> getChatRooms(){
-        HashMap<Integer, String> rooms = new HashMap<>();
+    public ArrayList<ChatRoom> getChatRooms(){
+        ArrayList<ChatRoom> rooms = new ArrayList<>();
 
         try (Connection conn = SQLConnection.getConnection();
+             Statement stmt = conn.createStatement();
             PreparedStatement pStmt = conn.prepareStatement(
-                    "SELECT room_id, username FROM tblChatroom as r, tblUser as u " +
-                            "WHERE (r.user_1 = u.user_id OR r.user_2 = u.user_id) AND user_1 = ? OR user_2 = ?"
+                    "SELECT room_id, user_1, user_2 FROM tblChatroom " +
+                            "WHERE user_1 = ? OR user_2 = ?"
             )) {
             pStmt.setInt(1, current_user.getUser_id());
             pStmt.setInt(2, current_user.getUser_id());
 
             ResultSet res = pStmt.executeQuery();
             while (res.next()){
-                rooms.put(res.getInt("room_id"), res.getString("username"));
+                int room_id = res.getInt("room_id");
+                int user1 = res.getInt("user_1");
+                int user2 = res.getInt("user_2");
+
+                int other_user = (user1 != current_user.getUser_id()) ? user1 : user2;
+                String getOtherUser = "SELECT username FROM tblUser WHERE user_id = " + other_user;
+                ResultSet res1 = stmt.executeQuery(getOtherUser);
+                res1.next();
+                String username = res1.getString("username");
+
+                rooms.add(new ChatRoom(room_id, user1, user2).setOtherUser(username));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
