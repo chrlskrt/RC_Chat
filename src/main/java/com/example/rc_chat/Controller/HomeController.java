@@ -4,6 +4,8 @@ import com.example.rc_chat.ChatMessage;
 import com.example.rc_chat.ChatRoom;
 import com.example.rc_chat.RC_Chat;
 import com.example.rc_chat.Server.ChatClient;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -78,7 +80,7 @@ public class HomeController {
         alert.showAndWait();
     }
 
-    public void testing(){
+    public static void testing(){
         System.out.println("yesy duefhafh");
     }
     private void loadChatRoomButtons(){
@@ -117,4 +119,24 @@ public class HomeController {
         }
     }
 
+    private static void addChatButton(){
+//        HBox haha = (HBox) ap_chatroom.getParent();
+//        String ewie = haha.getId();
+//        System.out.println(ewie);
+
+        testing();
+    }
+
+    public static class newButton extends Task<Void> {
+
+        public newButton() {
+
+        }
+
+        @Override
+        protected Void call() throws Exception {
+            Platform.runLater(()->addChatButton());
+            return null;
+        }
+    }
 }

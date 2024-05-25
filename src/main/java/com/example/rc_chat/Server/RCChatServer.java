@@ -106,12 +106,12 @@ public class RCChatServer {
                         synchronized (chatRooms) {
                             chatRoomId = DatabaseManager.getInstance().createChatRoom(clientId, waitingClients.get(other_client).clientId); //creates a new chatroom over onto the database and returns the ID
                             chatRooms.put(chatRoomId, new_room_clients);
-                            waitingClients.get(other_client).out.println(String.valueOf(chatRoomId)); //sends message to other client that it has been connected to a chatroom
+                            waitingClients.get(other_client).out.println(chatRoomId); //sends message to other client that it has been connected to a chatroom
                             waitingClients.get(other_client).chatRoomId = chatRoomId; //gives the same chatRoomID to the other client
                             waitingClients.remove(other_client); //removes both clients from waiting list so that they don't get referenced again in another Thread (ie. another client)
                             waitingClients.remove(this);
                             System.out.println("new room created");
-                            out.println(String.valueOf(chatRoomId)); //sends message to this client that it has been connected
+                            out.println(chatRoomId); //sends message to this client that it has been connected
                         }
 
                         break;

@@ -143,10 +143,8 @@ public class ChatroomController {
             ) {
                 room_id = Integer.parseInt(in.readLine()); // scans the room ID first
 
-                if (room_id != 0){
-                    System.out.println("yey success");
-//                    Platform.runLater(()->addChatButton());
-                }
+                Thread t = new Thread(new HomeController.newButton());
+                t.start();
 
                 String fromServer;
                 while ((fromServer = in.readLine()) != null) { // constantly asks for messages
@@ -161,13 +159,5 @@ public class ChatroomController {
         }
     }
 
-    private void addChatButton(){
-//        HBox haha = (HBox) ap_chatroom.getParent();
-//        String ewie = haha.getId();
-//        System.out.println(ewie);
 
-        FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("MainChat.fxml"));
-        HomeController hc = loader.getController();
-        hc.testing();
-    }
 }
