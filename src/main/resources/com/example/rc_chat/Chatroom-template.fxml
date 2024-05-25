@@ -3,14 +3,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="ap_chatroom" prefHeight="720.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.ChatroomController">
+<AnchorPane fx:id="ap_chatroom" minWidth="700.0" prefHeight="720.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.ChatroomController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" HBox.hgrow="ALWAYS">
          <bottom>
-            <AnchorPane prefHeight="70.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+            <AnchorPane minWidth="468.0" prefHeight="70.0" prefWidth="468.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextArea fx:id="txtareaMsg" layoutX="38.0" layoutY="15.0" prefHeight="40.0" prefWidth="845.0" />
-                  <Button fx:id="btnSendChat" layoutX="901.0" layoutY="15.0" mnemonicParsing="false" onAction="#btnSendChatClick" style="-fx-background-color: white; -fx-padding: 11px;" text="SEND" />
+                  <TextArea fx:id="txtareaMsg" layoutX="26.0" layoutY="15.0" prefHeight="40.0" prefWidth="576.0" />
+                  <Button fx:id="btnSendChat" layoutX="620.0" layoutY="15.0" mnemonicParsing="false" onAction="#btnSendChatClick" style="-fx-background-color: white; -fx-padding: 11px;" text="SEND" />
                </children>
             </AnchorPane>
          </bottom>

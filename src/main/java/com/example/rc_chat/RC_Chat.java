@@ -99,23 +99,24 @@ public class RC_Chat extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("MainChat.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 1000,540);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
 
         // FULL SCREEN
-        stage.setX(bounds.getMinX());
-        stage.setY(bounds.getMinY());
-        stage.setWidth(bounds.getWidth());
-        stage.setHeight(bounds.getHeight());
+//        stage.setX(bounds.getMinX());
+//        stage.setY(bounds.getMinY());
+//        stage.setWidth(bounds.getWidth());
+//        stage.setHeight(bounds.getHeight());
 
         // loading the mainChat.fxml
         HomeController hc = fxmlLoader.getController();
         hc.loadPage();
 
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
         stage.setTitle("RChat Room");
     }

@@ -33,7 +33,13 @@ public class HomeController implements ButtonObserver{
     public TextArea txtareaMsg;
     public VBox vbox_mainchat_container;
     public Alert alert = new Alert(Alert.AlertType.NONE);
+    @FXML
     public VBox vbox_chatroom_container;
+
+    @FXML
+    public void initialize() {
+//        vbox_chatroom_container.prefHeightProperty().bind(cHBox.heightProperty().divide(2));
+    }
 
     public void loadPage(){
         lblUsername.setText(current_user.getUsername());

@@ -43,6 +43,7 @@ public class ChatroomController {
         HomeController hc = loader.getController();
 //        hc.testing();
         notifyObserver(hc); //TODO: Add observer (get HomeController and put it in the parameter)
+//        notifyObserver(); //TODO: Add observer (get HomeController and put it in the parameter)
     }
 
 

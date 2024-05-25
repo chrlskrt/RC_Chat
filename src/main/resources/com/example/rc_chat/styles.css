@@ -8,6 +8,6 @@
 #chatroom {
     -fx-background-image:url('https://cdna.artstation.com/p/assets/images/images/017/692/926/large/minh-truong-clone64-city-night.jpg?1556987277');
     -fx-background-repeat: no-repeat;
-    -fx-background-size: 1500 880;
+    -fx-background-size: cover;
     -fx-background-position: center center;
 }

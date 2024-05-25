@@ -11,6 +11,6 @@
             <Image backgroundLoading="true" url="https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="lbl_chatMessage" alignment="CENTER" layoutX="88.0" layoutY="18.0" prefHeight="44.0" prefWidth="41.0" style="-fx-background-color: #434E65; -fx-background-radius: 15px;" text="hi" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+      <Label fx:id="lbl_chatMessage" alignment="CENTER" layoutX="88.0" layoutY="18.0" prefHeight="44.0" prefWidth="290.0" style="-fx-background-color: #434E65; -fx-background-radius: 15px;" text="hi" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
    </children>
 </AnchorPane>

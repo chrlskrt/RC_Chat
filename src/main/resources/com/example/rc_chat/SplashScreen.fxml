@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="splashAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="700.0" style="-fx-background-color: #2F1753;" styleClass="anchor" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.RC_Chat">
+<AnchorPane id="chatroom" fx:id="splashAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="700.0" style="-fx-background-color: #2F1753;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.RC_Chat">
    <stylesheets>
       <URL value="@styles.css" />
    </stylesheets>
@@ -18,14 +18,14 @@
                   <Image backgroundLoading="true" url="https://i.ibb.co/ryNhnpm/frame-1.png" />
                </image>
             </ImageView>
-            <AnchorPane focusTraversable="true" layoutX="48.0" layoutY="63.0" prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane focusTraversable="true" layoutX="52.0" layoutY="77.0" prefHeight="186.0" prefWidth="208.0">
                <children>
       
                   <TextField fx:id="tf_logUsername" layoutX="15.0" layoutY="21.0" promptText="Username" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px; -fx-text-fill:white" />
                   <PasswordField fx:id="pf_logPassword" layoutX="15.0" layoutY="58.0" promptText="Password" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px; -fx-text-fill:white" />
                   <Button fx:id="btnLogInUser" layoutX="65.0" layoutY="103.0" mnemonicParsing="false" onAction="#btnLogInUserClick" style="-fx-background-color: white; -fx-background-radius: 15px; -fx-padding: 5px 20px 5px 20px;" text="Login" />
-                  <Button layoutX="58.0" layoutY="158.0" mnemonicParsing="false" onAction="#registerOnClick" style="-fx-padding: 5px 20px 5px 20px; -fx-background-radius: 20px; -fx-background-color: white;" text="Register" />
-                  <Label layoutX="94.0" layoutY="136.0" text="or" textFill="WHITE" />
+                  <Button layoutX="86.0" layoutY="145.0" mnemonicParsing="false" onAction="#registerOnClick" style="-fx-background-color: #1F283D;" text="Create Account" textFill="WHITE" underline="true" />
+                  <Label layoutX="29.0" layoutY="149.0" text="New here?" textFill="WHITE" />
                </children>
             </AnchorPane>
             <Label layoutX="323.0" layoutY="198.0" text="Log in with QR Code" textFill="WHITE">
@@ -36,7 +36,7 @@
                <font>
                   <Font name="JetBrains Mono ExtraBold" size="20.0" />
                </font></Label>
-            <Label layoutX="305.0" layoutY="228.0" prefHeight="19.0" prefWidth="208.0" text="Scan this with the RChat mobile app to log in instantly." textFill="WHITE" wrapText="true">
+            <Label layoutX="305.0" layoutY="221.0" prefHeight="42.0" prefWidth="208.0" text="Scan this with the RChat mobile app to log in instantly." textFill="WHITE" wrapText="true">
                <font>
                   <Font size="13.0" />
                </font>
