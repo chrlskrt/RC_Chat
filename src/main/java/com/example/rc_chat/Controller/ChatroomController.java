@@ -31,25 +31,17 @@ public class ChatroomController {
     public TextArea txtareaMsg;
     public Alert alert = new Alert(Alert.AlertType.NONE);
     public AnchorPane ap_chatroom;
-    private static int room_id; //Current chat room ID, WILL CHANGE DEPENDING ON WHICH CHAT IT'S STILL ON ATM
-    static boolean newChat = false;
-
-    public static void setNewChat(boolean newChat) throws IOException {
-        ChatroomController.newChat = newChat;
-
-        System.out.println("oks pa l40");
-        FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("MainChat.fxml"));System.out.println("oks pa l41");
-        Parent root = loader.load(); System.out.println("oks pa l42");
-        HomeController hc = loader.getController();
-//        hc.testing();
-        notifyObserver(hc); //TODO: Add observer (get HomeController and put it in the parameter)
-//        notifyObserver(); //TODO: Add observer (get HomeController and put it in the parameter)
-    }
+    int room_id; //Current chat room ID, WILL CHANGE DEPENDING ON WHICH CHAT IT'S STILL ON ATM
+    private HomeController parentController;
 
 
     public void loadChatroom() throws IOException {
         Thread t = new Thread(new IncomingReader()); //STARTS MESSAGE READER, SEE LINE 91 FOR MORE DETAILS
         t.start();
+    }
+
+    public void setParentController(HomeController parentController){
+        this.parentController = parentController;
     }
 
     public void setRoom_id(int room_id){
@@ -74,7 +66,6 @@ public class ChatroomController {
 
         txtareaMsg.clear();
     }
-
     private void loadChats(){
         ArrayList<ChatMessage> messages = dbManager.getMessages(room_id);
 
@@ -138,9 +129,6 @@ public class ChatroomController {
         alert.showAndWait();
     }
 
-    private static void notifyObserver(ButtonObserver observer) {
-        observer.update(room_id);
-    }
 
     /*I N C O M I N G   R E A D E R   T A S K
     * PURPOSE: A separate thread that will listen for any new messages from the server.
@@ -152,7 +140,6 @@ public class ChatroomController {
     *               code (TODO LATER).
     *
     * Additional: Platform.runLater works concurrently with the JavaFX Thread, so the Runnable it takes in runs on the JavaFX Thread, necessary for manipulating the Chats.*/
-
     public class IncomingReader extends Task<Void> {
 
         @Override
@@ -162,7 +149,7 @@ public class ChatroomController {
                 room_id = Integer.parseInt(in.readLine()); // scans the room ID first
                 Platform.runLater(()-> {
                     try {
-                        setNewChat(true);
+                        setNewChatButton();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -179,7 +166,11 @@ public class ChatroomController {
             }
             return null;
         }
-    }
 
+
+    }
+    public void setNewChatButton() throws IOException {
+        parentController.addNewChatButton(room_id);
+    }
 
 }

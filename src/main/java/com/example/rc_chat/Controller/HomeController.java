@@ -20,13 +20,10 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import static com.example.rc_chat.Controller.ChatroomController.newChat;
 import static com.example.rc_chat.RC_Chat.*;
 
-public class HomeController implements ButtonObserver{
+public class HomeController {
     public AnchorPane apChatroom;
     public HBox cHBox;
     public Label lblUsername;
@@ -64,6 +61,7 @@ public class HomeController implements ButtonObserver{
         ChatClient.getOut().println("4156"); //SENDS A CODE TO THE SERVER THAT IT WANTS TO START A NEW CHAT
         ChatroomController cc = fxmlLoader.getController();
         cc.loadChatroom();
+        cc.setParentController(this);
 
         cHBox.getChildren().remove(1);
         cHBox.getChildren().add(profile_component);
@@ -93,11 +91,6 @@ public class HomeController implements ButtonObserver{
         alert.showAndWait();
     }
 
-    public void testing(){
-        System.out.println("yesy duefhafh");
-
-//        vbox_chatroom_container.getChildren().add();
-    }
     private void loadChatRoomButtons(){
         /* Buttons for previous chats */
         ArrayList<ChatRoom> rooms = dbManager.getChatRooms();
@@ -134,62 +127,54 @@ public class HomeController implements ButtonObserver{
         }
     }
 
+    public void addNewChatButton(int room_id){
+        addChatButton(room_id);
+    }
+
     public void addChatButton(int room_id){
-//        HBox haha = (HBox) ap_chatroom.getParent();
-//        String ewie = haha.getId();
-//        System.out.println(ewie);
         System.out.println(room_id);
-        testing();
 
-        FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("Chat-Button-Template.fxml"));
-        AnchorPane chatroomButton;
-        try {
-            chatroomButton = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        System.out.println("whre am i? " + Thread.currentThread().getName());
+        if (Platform.isFxApplicationThread()){
+            System.out.println("boogsg im in gui");
+
+            System.out.println("how many chats before: " + vbox_chatroom_container.getChildren().size());
+
+            FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("Chat-Button-Template.fxml"));
+            AnchorPane chatroomButton;
+            try {
+                chatroomButton = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            try {
+                Button btnAccessPreviousChat = (Button) chatroomButton.lookup("#btnAccessPreviousChat");
+
+                btnAccessPreviousChat.setText("NEW ROOM");
+                btnAccessPreviousChat.setVisible(true);
+                btnAccessPreviousChat.setManaged(true);
+                btnAccessPreviousChat.setOnAction(e -> {
+                    try {
+                        btnGoToPreviousChat(e, room_id);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+
+            } catch (Exception e){
+                throw new RuntimeException(e);
+            }
+
+            chatroomButton.setVisible(true);
+            chatroomButton.setManaged(true);
+            vbox_chatroom_container.getChildren().add(chatroomButton);
+            vbox_chatroom_container.layout();
+            vbox_chatroom_container.requestLayout();
+
+            System.out.println("how many chats after: " + vbox_chatroom_container.getChildren().size());
         }
 
-        try {
-            Button btnAccessPreviousChat = (Button) chatroomButton.lookup("#btnAccessPreviousChat");
-
-            btnAccessPreviousChat.setText("NEW ROOM");
-            btnAccessPreviousChat.setVisible(true);
-            btnAccessPreviousChat.setOnAction(e -> {
-                try {
-                    btnGoToPreviousChat(e, room_id);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-
-        } catch (Exception e){
-            throw new RuntimeException(e);
-        }
-
-        vbox_chatroom_container.getChildren().add(chatroomButton);
         System.out.println("addded shd be");
-    }
-
-    @Override
-    public void update(int room_id) {
-        if (newChat){
-            Thread t = new Thread(new newButton(room_id));
-            t.start();
-            newChat = false;
-        }
-    }
-
-    public class newButton extends Task<Void> {
-        int room_id;
-        public newButton(int room_id) {
-            this.room_id = room_id;
-        }
-
-        @Override
-        protected Void call() throws Exception {
-                    Platform.runLater(()->addChatButton(room_id));
-
-                return null;
-        }
     }
 }
