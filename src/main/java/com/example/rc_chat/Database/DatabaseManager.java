@@ -4,6 +4,7 @@ import com.example.rc_chat.ChatMessage;
 import com.example.rc_chat.ChatRoom;
 import com.example.rc_chat.Server.ChatClient;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -75,7 +76,7 @@ public class DatabaseManager {
                     "INSERT INTO tblUser (username, password) VALUES (?, ?)"
             )) {
 
-            String hash_pass = MD5_Hash.getMd5(password);
+            String hash_pass = SHA256.toHexString(SHA256.getSHA(MD5_Hash.getMd5(password)));
             searchUser.setString(1, username);
             searchUser.setString(2, hash_pass);
 
@@ -94,7 +95,9 @@ public class DatabaseManager {
                 return dbStatus.REGISTER_SUCCESS;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
 
         return dbStatus.REGISTER_FAILED;
@@ -114,7 +117,7 @@ public class DatabaseManager {
                 return dbStatus.LOGIN_USER_NOT_FOUND;
             }
 
-            String hash_pass = MD5_Hash.getMd5(password);
+            String hash_pass = SHA256.toHexString(SHA256.getSHA(MD5_Hash.getMd5(password)));
             getUser.setString(1, username);
             getUser.setString(2, hash_pass);
             ResultSet res = getUser.executeQuery();
@@ -130,6 +133,8 @@ public class DatabaseManager {
 
         } catch (SQLException e) {
             return dbStatus.LOGIN_ERROR;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
 
         return dbStatus.LOGIN_SUCCESS;
