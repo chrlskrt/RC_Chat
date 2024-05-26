@@ -15,10 +15,15 @@
             </AnchorPane>
          </bottom>
          <center>
-            <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D;" BorderPane.alignment="CENTER">
-               <content>
-                  <VBox fx:id="vbox_chat_container" alignment="BOTTOM_CENTER" prefHeight="200.0" style="-fx-background-color: #1F283D;" />
-               </content></ScrollPane>
+            <AnchorPane BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <VBox fx:id="vbox_chat_container" alignment="BOTTOM_CENTER" prefHeight="200.0" style="-fx-background-color: #1F283D;" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
          </center>
       </BorderPane>
    </children>
