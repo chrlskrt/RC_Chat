@@ -13,12 +13,15 @@
    <children>
       <HBox fx:id="cHBox" layoutX="43.0" layoutY="30.0" minWidth="800.0" prefHeight="723.0" prefWidth="800.0" style="-fx-background-color: black; -fx-background-radius: 20px;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
          <children>
-            <ToolBar fx:id="chatToolbar" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefHeight="455.0" prefWidth="220.0" style="-fx-background-color: #37435D; -fx-background-radius: 20px 0px 0 20px;">
-               <items>
-                  <Separator orientation="VERTICAL" prefHeight="32.0" prefWidth="9.0" visible="false" />
-                <Button fx:id="btnStartChat" alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnStartChatClick" prefHeight="27.0" prefWidth="220.0" style="-fx-padding: 10px 20px 10px 20px; -fx-background-radius: 10px; -fx-background-color: white;" text="Start a Chat" textAlignment="CENTER" />
-                  <VBox fx:id="vbox_chatroom_container" minHeight="-Infinity" minWidth="-Infinity" prefHeight="265.0" prefWidth="220.0" />
-                  <AnchorPane accessibleRole="BUTTON" nodeOrientation="LEFT_TO_RIGHT" prefHeight="80.0" prefWidth="220.0">
+            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="220.0" style="-fx-background-color: #37435D; -fx-background-radius: 20px 0px 0 20px;" HBox.hgrow="NEVER">
+               <children>
+                <Button fx:id="btnStartChat" alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnStartChatClick" prefHeight="27.0" prefWidth="220.0" style="-fx-padding: 10px 20px 10px 20px; -fx-background-radius: 10px; -fx-background-color: white;" text="Start a Chat" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="25.0" />
+                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="500.0" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="290.0" prefWidth="220.0" style="-fx-background-color: #37435D;" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+                     <content>
+                        <VBox fx:id="vbox_chatroom_container" style="-fx-background-color: #37435D;" />
+                     </content>
+                  </ScrollPane>
+                  <AnchorPane accessibleRole="BUTTON" nodeOrientation="LEFT_TO_RIGHT" prefHeight="80.0" prefWidth="220.0" AnchorPane.bottomAnchor="5.0">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
@@ -31,9 +34,9 @@
                         <Button fx:id="btnProfile" layoutX="87.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnGoToProfileClick" prefHeight="17.0" prefWidth="110.0" style="-fx-background-color: white; -fx-padding: 5px 20px 5px 20px; -fx-background-radius: 10px;" text="Profile" />
                         <Label fx:id="lblUsername" layoutX="87.0" layoutY="16.0" text="USERNAME" textFill="WHITE" />
                      </children></AnchorPane>
-               </items>
-            </ToolBar>
-            <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" HBox.hgrow="ALWAYS">
+               </children>
+            </AnchorPane>
+            <BorderPane fx:id="bp_mainChat" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" HBox.hgrow="ALWAYS">
                <bottom>
                   <AnchorPane prefHeight="70.0" prefWidth="500.0" BorderPane.alignment="CENTER">
                      <children>
