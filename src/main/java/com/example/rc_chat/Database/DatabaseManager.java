@@ -6,7 +6,6 @@ import com.example.rc_chat.Server.ChatClient;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static com.example.rc_chat.RC_Chat.current_user;
 
@@ -40,7 +39,7 @@ public class DatabaseManager {
             String createTblUsersQuery = "CREATE TABLE IF NOT EXISTS tblUser (" +
                     "user_id INT AUTO_INCREMENT PRIMARY KEY," +
                     "username VARCHAR (50) NOT NULL," +
-                    "password VARCHAR (50) NOT NULL)";
+                    "password VARCHAR (100) NOT NULL)";
             stmt.execute(createTblUsersQuery);
 
             String createTblChatRoomQuery = "CREATE TABLE IF NOT EXISTS tblChatroom (" +
@@ -76,8 +75,9 @@ public class DatabaseManager {
                     "INSERT INTO tblUser (username, password) VALUES (?, ?)"
             )) {
 
+            String hash_pass = MD5_Hash.getMd5(password);
             searchUser.setString(1, username);
-            searchUser.setString(2, password);
+            searchUser.setString(2, hash_pass);
 
             ResultSet resSearch = searchUser.executeQuery();
 
@@ -86,7 +86,7 @@ public class DatabaseManager {
             }
 
             insertUser.setString(1, username);
-            insertUser.setString(2, password);
+            insertUser.setString(2, hash_pass);
 
             int regRes = insertUser.executeUpdate();
 
@@ -97,31 +97,42 @@ public class DatabaseManager {
             e.printStackTrace();
         }
 
-        return dbStatus.REGISTER_ERROR;
+        return dbStatus.REGISTER_FAILED;
     }
 
     public dbStatus logUser(String username, String password) {
         try (Connection c = SQLConnection.getConnection();
-             PreparedStatement stmt = c.prepareStatement(
-                     "SELECT * FROM tblUser WHERE username=? AND password=?"
+             PreparedStatement verifyUser = c.prepareStatement("SELECT username FROM tblUser WHERE username=?");
+             PreparedStatement getUser = c.prepareStatement(
+                     "SELECT user_id FROM tblUser WHERE username=? AND password=?"
              )) {
-            stmt.setString(1, username);
-            stmt.setString(2, password);
-            ResultSet res = stmt.executeQuery();
 
-            if (res.next()){
-                current_user.setUser_id(res.getInt("user_id"));
-                current_user.setUsername(res.getString("username"));
-                current_user.setPassword(res.getString("password"));
-                ChatClient.getOut().println(current_user.getUser_id()); // sends ID to the thing and waits for a code
+            verifyUser.setString(1, username);
+            ResultSet vres = verifyUser.executeQuery();
 
-                return dbStatus.LOGIN_SUCCESS;
+            if (!vres.next()){
+                return dbStatus.LOGIN_USER_NOT_FOUND;
             }
+
+            String hash_pass = MD5_Hash.getMd5(password);
+            getUser.setString(1, username);
+            getUser.setString(2, hash_pass);
+            ResultSet res = getUser.executeQuery();
+
+            if (!res.next()){
+                return dbStatus.LOGIN_FAILED;
+            }
+
+            current_user.setUser_id(res.getInt("user_id"));
+            current_user.setUsername(username);
+            current_user.setPassword(hash_pass);
+            ChatClient.getOut().println(current_user.getUser_id()); // sends ID to the thing and waits for a code
+
         } catch (SQLException e) {
             return dbStatus.LOGIN_ERROR;
         }
 
-        return dbStatus.LOGIN_USER_NOT_FOUND;
+        return dbStatus.LOGIN_SUCCESS;
     }
 
     public ArrayList<ChatMessage> getMessages (int room_id){

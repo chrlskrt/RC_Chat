@@ -63,7 +63,7 @@ public class LoginRegisterController {
         if (regRes == dbStatus.REGISTER_USER_EXISTS){
             showAlert(Alert.AlertType.WARNING, "User exists");
             return;
-        } else if (regRes == dbStatus.REGISTER_ERROR){
+        } else if (regRes == dbStatus.REGISTER_FAILED){
             showAlert(Alert.AlertType.ERROR, "Account creation unsuccessful");
             return;
         }

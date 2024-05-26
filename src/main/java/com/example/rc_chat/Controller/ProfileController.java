@@ -2,7 +2,9 @@ package com.example.rc_chat.Controller;
 
 import com.example.rc_chat.Database.SQLConnection;
 import com.example.rc_chat.RC_Chat;
+import com.example.rc_chat.Server.ChatClient;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -43,28 +46,36 @@ public class ProfileController {
         setProfilePicture();
     }
 
-    public void deleteAccOnClick() {
+    public void deleteAccOnClick(ActionEvent actionEvent) {
         try(Connection c = SQLConnection.getConnection();
             PreparedStatement stmt = c.prepareStatement("DELETE FROM tbluser WHERE user_id = ?")) {
             stmt.setInt(1,current_user.getUser_id());
 //            stmt.executeUpdate();
-            goToSplashScreen();
+            goToSplashScreen(actionEvent);
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void goToSplashScreen() throws IOException {
-        // TODO: but how :(
+    public void goToSplashScreen(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("SplashScreen.fxml"));
         Parent root = fxmlLoader.load();
 
-        hc = fxmlLoader.getController();
-        hc.clearMainChat(); //hopefully removes everything sa mainchat.fxml ???
+        Scene scene = new Scene(root,700,440);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("RChat");
+        stage.setScene(scene);
+        stage.show();
 
+        current_user.setPassword("");
+        current_user.setUsername("");
+        current_user.setUser_id(-1);
     }
 
-    public void LogOutOnClick(ActionEvent actionEvent) {
+    public void LogOutOnClick(ActionEvent actionEvent) throws IOException {
+        // pop up
+
+        goToSplashScreen(actionEvent);
     }
 
     public void EditAccOnClick() throws IOException {

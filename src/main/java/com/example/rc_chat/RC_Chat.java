@@ -18,7 +18,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
@@ -26,7 +25,6 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
-import java.security.Key;
 
 public class RC_Chat extends Application {
     public AnchorPane splashAnchor;
@@ -97,7 +95,7 @@ public class RC_Chat extends Application {
         if (logRes == dbStatus.LOGIN_USER_NOT_FOUND){
             showAlert(Alert.AlertType.ERROR, "User not found.");
             return;
-        } else if (logRes == dbStatus.LOGIN_ERROR){
+        } else if (logRes == dbStatus.LOGIN_FAILED){
             showAlert(Alert.AlertType.WARNING, "Username or password is incorrect.");
             return;
         }
