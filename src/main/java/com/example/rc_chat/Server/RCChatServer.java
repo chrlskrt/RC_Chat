@@ -92,6 +92,13 @@ public class RCChatServer {
                     }
 
                 }
+
+                synchronized (waitingClients) {
+                    if (waitingClients.contains(this)) {
+                        System.out.println("Removing " + this.clientId + " from waiting list.");
+                        waitingClients.remove(this);
+                    }
+                }
             }
         }
 

@@ -173,7 +173,7 @@ public class ChatroomController {
                     Platform.runLater(()->addChatMessage(Integer.parseInt(message[0]), message[1])); // See Line 101
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("Disconnected");
             }
 
             System.out.println("Ending Incoming Reader 1");
