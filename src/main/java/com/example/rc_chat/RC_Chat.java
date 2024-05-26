@@ -8,6 +8,7 @@ import com.example.rc_chat.Database.dbStatus;
 import com.example.rc_chat.Server.ChatClient;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
@@ -19,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
@@ -47,6 +49,18 @@ public class RC_Chat extends Application {
         stage.setTitle("RChat");
         stage.setScene(scene);
         stage.show();
+
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                ChatClient.getOut().println("/8130");
+                try {
+                    ChatClient.getSocket().close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 
     public void registerOnClick(ActionEvent actionEvent) throws IOException {

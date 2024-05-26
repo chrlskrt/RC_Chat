@@ -49,6 +49,7 @@ public class HomeController {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("Profile.fxml"));
         AnchorPane profile_component = fxmlLoader.load();
 
+        ChatClient.getOut().println("/8130"); //SENDS A CANCELATION CODE BEFORE IT TRANSITIONS
         ProfileController pc = fxmlLoader.getController();
         pc.loadPage();
         cHBox.getChildren().remove(1);
@@ -60,7 +61,8 @@ public class HomeController {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("Chatroom-template.fxml"));
         AnchorPane chat_component = fxmlLoader.load();
 
-        ChatClient.getOut().println("4156"); //SENDS A CODE TO THE SERVER THAT IT WANTS TO START A NEW CHAT
+        ChatClient.getOut().println("/8130"); //SENDS A CANCELATION CODE BEFORE IT TRANSITIONS
+        ChatClient.getOut().println("/4156"); //SENDS A CODE TO THE SERVER THAT IT WANTS TO START A NEW CHAT
         ChatroomController cc = fxmlLoader.getController();
         cc.loadChatroom();
         cc.setParentController(this);
@@ -74,9 +76,11 @@ public class HomeController {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("Chatroom-template.fxml"));
         AnchorPane chat_component = fxmlLoader.load();
 
-//        ChatClient.getOut().println("9104"); //SENDS A CODE TO THE SERVER THAT IT WANTS TO CONTINUE PREVIOUS CHAT
+        ChatClient.getOut().println("/8130"); //SENDS A CANCELATION CODE BEFORE IT TRANSITIONS
+        ChatClient.getOut().println("/9104"); //SENDS A CODE TO THE SERVER THAT IT WANTS TO CONTINUE PREVIOUS CHAT
+        ChatClient.getOut().println(room_id);
         ChatroomController cc = fxmlLoader.getController();
-        cc.loadChatroom();
+        cc.loadPrevChatroom();
         cc.setRoom_id(room_id);
 
         cHBox.getChildren().remove(1);

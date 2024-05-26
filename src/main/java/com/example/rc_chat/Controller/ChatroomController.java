@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.SocketException;
 import java.util.ArrayList;
 
 import static com.example.rc_chat.RC_Chat.current_user;
@@ -37,6 +38,11 @@ public class ChatroomController {
 
     public void loadChatroom() throws IOException {
         Thread t = new Thread(new IncomingReader()); //STARTS MESSAGE READER, SEE LINE 91 FOR MORE DETAILS
+        t.start();
+    }
+
+    public void loadPrevChatroom() throws IOException {
+        Thread t = new Thread(new IncomingReaderforPrevious()); //STARTS MESSAGE READER, SEE LINE 91 FOR MORE DETAILS
         t.start();
     }
 
@@ -144,8 +150,8 @@ public class ChatroomController {
 
         @Override
         protected Void call() throws Exception {
-            try (BufferedReader in = new BufferedReader(new InputStreamReader(ChatClient.getSocket().getInputStream())); //Takes in messages from the server
-            ) {
+            try{
+                BufferedReader in = new BufferedReader(new InputStreamReader(ChatClient.getSocket().getInputStream())); //Takes in messages from the server
                 room_id = Integer.parseInt(in.readLine()); // scans the room ID first
                 Platform.runLater(()-> {
                     try {
@@ -158,12 +164,49 @@ public class ChatroomController {
                 String fromServer;
                 while ((fromServer = in.readLine()) != null) { // constantly asks for messages
                     System.out.println(fromServer);
+                    if (fromServer.startsWith("/8130")) {
+                        System.out.println("Closing Reader due to transfer...");
+                        break;
+                    }
+
                     String [] message = fromServer.split("\\|", 2);
                     Platform.runLater(()->addChatMessage(Integer.parseInt(message[0]), message[1])); // See Line 101
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            System.out.println("Ending Incoming Reader 1");
+            return null;
+        }
+
+
+    }
+
+    public class IncomingReaderforPrevious extends Task<Void> {
+
+        @Override
+        protected Void call() throws Exception {
+            try {
+                BufferedReader in = new BufferedReader(new InputStreamReader(ChatClient.getSocket().getInputStream())); //Takes in messages from the server
+                String fromServer;
+
+                while ((fromServer = in.readLine()) != null) { // constantly asks for messages
+                    System.out.println(fromServer);
+
+                    if (fromServer.startsWith("/8130")) {
+                        System.out.println("Closing Reader due to transfer...");
+                        break;
+                    }
+
+                    String [] message = fromServer.split("\\|", 2);
+                    Platform.runLater(()->addChatMessage(Integer.parseInt(message[0]), message[1])); // See Line 101
+                }
+            } catch (IOException e) {
+                System.err.println("Disconnected");
+            }
+
+            System.out.println("Ending Incoming Reader 2");
             return null;
         }
 

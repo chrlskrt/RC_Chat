@@ -54,18 +54,28 @@ public class RCChatServer {
                 //waits for a command
                 String code;
                 while (true) {
+                    System.out.println(clientId + " is in main.");
                     code = in.readLine();
                     switch (code) {
-                        case "4156": //start chatroom button
+                        case "/4156": //start chatroom button
                             StartChat(in); // calls a function that deals with new chatrooms
                             break;
-                        case "9104": //TODO: previous chat buttons
-                            out.println("You selected 9104");
+                        case "/9104": //TODO: previous chat buttons
+//                            out.println("You selected 9104");
+                            gotoPrev(in);
+                            break;
+                        default:
+                            System.out.println(clientId + " has no input yet");
                             break;
                     }
                 }
             } catch (SocketException s) {
-                sendMessageToChatRoom(chatRoomId, clientId + " has disconnected");
+                System.out.println(clientId + " has disconnected");
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             } catch (IOException | NumberFormatException e) {
                 e.printStackTrace();
             } finally {
@@ -73,18 +83,35 @@ public class RCChatServer {
                 synchronized (chatRooms) {
                     Set<ClientHandler> clients = chatRooms.get(chatRoomId); //gets clients of chatroom
                     if (clients != null) {
+                        System.out.println("Removing "  + this.clientId);
                         clients.remove(this); //removes himself from set of clients
                         if (clients.isEmpty()) {
+                            System.out.println("Removing chatroom " + chatRoomId);
                             chatRooms.remove(chatRoomId); //if empty, chatroom is removed
                         }
                     }
-                }
-                try {
-                    socket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+
                 }
             }
+        }
+
+        private void gotoPrev(BufferedReader in) throws IOException {
+            int chatroom = Integer.parseInt(in.readLine());
+            chatRoomId = chatroom;
+            synchronized (chatRooms) {
+                Set<ClientHandler> clients = chatRooms.get(chatroom);
+                if (clients != null) {
+                    clients.add(this);
+                    System.out.println("Added " + clientId + " to existing chat" + chatroom);
+                } else {
+                    clients = new HashSet<>();
+                    clients.add(this);
+                    chatRooms.put(chatroom, clients);
+                    System.out.println("Added " + clientId + " to new previous chat" + chatroom);
+                }
+            }
+
+            listen(in);
         }
 
         private void StartChat(BufferedReader in) {
@@ -119,10 +146,16 @@ public class RCChatServer {
                 }
             }
 
+           listen(in);
+        }
+
+        private void listen(BufferedReader in){
             try {
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) { //waits for messages received from the client
-                    if (inputLine.startsWith("8430!")) { //TODO: EXIT CODE THAT DISCONNECTS CLIENT BACK TO WAITING FOR CODE
+                    if (inputLine.startsWith("/8130")) { //TODO: EXIT CODE THAT DISCONNECTS CLIENT BACK TO WAITING FOR CODE
+                        System.out.println("Cancel code received, returning " + clientId + " to main...");
+                        out.println("/8130");
                         return;
                     }
 
@@ -131,7 +164,12 @@ public class RCChatServer {
                     sendMessageToChatRoom(Integer.parseInt(message[0]), message[1] ); //any new messages will be processed in this function
                 }
             } catch (SocketException s) {
-                sendMessageToChatRoom(chatRoomId, clientId + " has disconnected");
+                System.out.println(clientId + " has disconnected");
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             } catch (IOException | NumberFormatException e) {
                 e.printStackTrace();
             } finally { // SEE LINE 67
@@ -139,16 +177,13 @@ public class RCChatServer {
                 synchronized (chatRooms) {
                     Set<ClientHandler> clients = chatRooms.get(chatRoomId);
                     if (clients != null) {
+                        System.out.println("We removing " + clientId + " from chat " + chatRoomId);
                         clients.remove(this);
                         if (clients.isEmpty()) {
+                            System.out.println("chat " + chatRoomId + " is empty, so we removing it");
                             chatRooms.remove(chatRoomId);
                         }
                     }
-                }
-                try {
-                    socket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
             }
         }
