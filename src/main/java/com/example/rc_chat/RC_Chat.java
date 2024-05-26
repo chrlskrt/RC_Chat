@@ -15,24 +15,30 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
+import java.security.Key;
 
 public class RC_Chat extends Application {
     public AnchorPane splashAnchor;
     public TextField tf_logUsername;
+    public Button btnLogInUser, btnRegisterAcc;
     public PasswordField pf_logPassword;
     public LoginRegisterController logregcon;
     public Alert alert = new Alert(Alert.AlertType.NONE);
     public static DatabaseManager dbManager = DatabaseManager.getInstance();;
     public static User current_user = User.getInstance();;
     public static ChatClient client;
+    public KeyHandlers kh = new KeyHandlers();
 
     static {
         try {
@@ -61,6 +67,11 @@ public class RC_Chat extends Application {
                 }
             }
         });
+    }
+
+    // TABBING SHIT
+    public void initialize() {
+        TabHandler();
     }
 
     public void registerOnClick(ActionEvent actionEvent) throws IOException {
@@ -141,6 +152,33 @@ public class RC_Chat extends Application {
         alert.setHeaderText(null);
         alert.showAndWait();
     }
+
+    public void TabHandler() {
+        tf_logUsername.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if(kh.TabPressed(event)) {
+                pf_logPassword.requestFocus();
+            }
+        });
+
+        pf_logPassword.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if(kh.TabPressed(event)) {
+                btnLogInUser.requestFocus();
+            }
+        });
+
+        btnLogInUser.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if(kh.TabPressed(event)) {
+                btnRegisterAcc.requestFocus();
+            }
+        });
+
+        btnRegisterAcc.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if(kh.TabPressed(event)) {
+                tf_logUsername.requestFocus();
+            }
+        });
+    }
+
 
     public static void main(String[] args) {
         launch();

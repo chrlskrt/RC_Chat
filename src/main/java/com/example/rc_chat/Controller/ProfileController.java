@@ -76,7 +76,9 @@ public class ProfileController {
 
         a.getChildren().clear();
         a.getChildren().add(p);
+    }
 
+    public void exitEdit() {
 
     }
 

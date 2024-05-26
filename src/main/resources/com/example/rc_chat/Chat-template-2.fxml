@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="80.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="lbl_chatOwnMessage" alignment="CENTER" layoutX="15.0" layoutY="18.0" prefHeight="44.0" prefWidth="310.0" style="-fx-background-color: #ABB2C2; -fx-background-radius: 15px;" text="hello" textAlignment="RIGHT" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="75.0" />
+      <Label fx:id="lbl_chatOwnMessage" alignment="CENTER" layoutX="258.0" layoutY="18.0" prefHeight="44.0" prefWidth="67.0" style="-fx-background-color: #ABB2C2; -fx-background-radius: 15px;" textAlignment="RIGHT" textFill="WHITE" AnchorPane.leftAnchor="258.0" AnchorPane.rightAnchor="75.0" />
       <ImageView fx:id="imgProfile" fitHeight="50.0" fitWidth="50.0" layoutX="336.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 5;" AnchorPane.rightAnchor="15.0">
          <image>
             <Image backgroundLoading="true" url="https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg" />
