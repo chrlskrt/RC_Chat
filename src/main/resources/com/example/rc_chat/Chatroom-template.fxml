@@ -3,19 +3,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="ap_chatroom" minWidth="700.0" prefHeight="720.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.ChatroomController">
+<AnchorPane fx:id="ap_chatroom" minWidth="700.0" prefHeight="720.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.ChatroomController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" HBox.hgrow="ALWAYS">
+      <BorderPane prefHeight="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
-            <AnchorPane minWidth="468.0" prefHeight="70.0" prefWidth="468.0" BorderPane.alignment="CENTER">
+            <AnchorPane minWidth="468.0" prefHeight="70.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextArea fx:id="txtareaMsg" layoutX="26.0" layoutY="15.0" prefHeight="40.0" prefWidth="576.0" />
-                  <Button fx:id="btnSendChat" layoutX="620.0" layoutY="15.0" mnemonicParsing="false" onAction="#btnSendChatClick" style="-fx-background-color: white; -fx-padding: 11px;" text="SEND" />
+                  <TextArea fx:id="txtareaMsg" layoutX="26.0" layoutY="15.0" prefHeight="40.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="100.0" />
+                  <Button fx:id="btnSendChat" layoutX="620.0" layoutY="15.0" mnemonicParsing="false" onAction="#btnSendChatClick" style="-fx-background-color: white; -fx-padding: 11px;" text="SEND" AnchorPane.rightAnchor="25.0" />
                </children>
             </AnchorPane>
          </bottom>
          <center>
-            <VBox fx:id="vbox_chat_container" alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+            <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D;" BorderPane.alignment="CENTER">
+               <content>
+                  <VBox fx:id="vbox_chat_container" alignment="BOTTOM_CENTER" prefHeight="200.0" style="-fx-background-color: #1F283D;" />
+               </content></ScrollPane>
          </center>
       </BorderPane>
    </children>

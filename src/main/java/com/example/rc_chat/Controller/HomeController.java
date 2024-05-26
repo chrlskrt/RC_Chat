@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class HomeController {
 
     public void loadPage(){
         lblUsername.setText(current_user.getUsername());
-
+        vbox_chatroom_container.setSpacing(5);
         loadChatRoomButtons();
     }
 
@@ -52,11 +53,12 @@ public class HomeController {
         pc.loadPage();
         cHBox.getChildren().remove(1);
         cHBox.getChildren().add(profile_component);
+        HBox.setHgrow(profile_component, Priority.ALWAYS);
     }
 
     public void btnStartChatClick(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("Chatroom-template.fxml"));
-        AnchorPane profile_component = fxmlLoader.load();
+        AnchorPane chat_component = fxmlLoader.load();
 
         ChatClient.getOut().println("4156"); //SENDS A CODE TO THE SERVER THAT IT WANTS TO START A NEW CHAT
         ChatroomController cc = fxmlLoader.getController();
@@ -64,12 +66,13 @@ public class HomeController {
         cc.setParentController(this);
 
         cHBox.getChildren().remove(1);
-        cHBox.getChildren().add(profile_component);
+        cHBox.getChildren().add(chat_component);
+        HBox.setHgrow(chat_component, Priority.ALWAYS);
     }
 
     public void btnGoToPreviousChat(ActionEvent event, int room_id) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("Chatroom-template.fxml"));
-        AnchorPane profile_component = fxmlLoader.load();
+        AnchorPane chat_component = fxmlLoader.load();
 
 //        ChatClient.getOut().println("9104"); //SENDS A CODE TO THE SERVER THAT IT WANTS TO CONTINUE PREVIOUS CHAT
         ChatroomController cc = fxmlLoader.getController();
@@ -77,7 +80,8 @@ public class HomeController {
         cc.setRoom_id(room_id);
 
         cHBox.getChildren().remove(1);
-        cHBox.getChildren().add(profile_component);
+        cHBox.getChildren().add(chat_component);
+        HBox.setHgrow(chat_component, Priority.ALWAYS);
     }
 
     public void clearMainChat() {
@@ -98,6 +102,17 @@ public class HomeController {
         vbox_chatroom_container.getChildren().clear();
 
         for (ChatRoom room : rooms){
+            addChatButton(room);
+        }
+    }
+
+    public void addNewChatButton(int room_id){
+        ChatRoom newRoom = dbManager.getRoomInfo(room_id);
+        addChatButton(newRoom);
+    }
+
+    public void addChatButton(ChatRoom room){
+        if (Platform.isFxApplicationThread()){
             FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("Chat-Button-Template.fxml"));
             AnchorPane chatroomButton;
             try {
@@ -110,7 +125,6 @@ public class HomeController {
                 Button btnAccessPreviousChat = (Button) chatroomButton.lookup("#btnAccessPreviousChat");
 
                 btnAccessPreviousChat.setText(room.getOtherUser());
-
                 btnAccessPreviousChat.setOnAction(e -> {
                     try {
                         btnGoToPreviousChat(e, room.getRoom_id());
@@ -123,58 +137,7 @@ public class HomeController {
                 throw new RuntimeException(e);
             }
 
-            vbox_chatroom_container.getChildren().add(chatroomButton);
+            vbox_chatroom_container.getChildren().add(0,chatroomButton);
         }
-    }
-
-    public void addNewChatButton(int room_id){
-        addChatButton(room_id);
-    }
-
-    public void addChatButton(int room_id){
-        System.out.println(room_id);
-
-        System.out.println("whre am i? " + Thread.currentThread().getName());
-        if (Platform.isFxApplicationThread()){
-            System.out.println("boogsg im in gui");
-
-            System.out.println("how many chats before: " + vbox_chatroom_container.getChildren().size());
-
-            FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("Chat-Button-Template.fxml"));
-            AnchorPane chatroomButton;
-            try {
-                chatroomButton = loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            try {
-                Button btnAccessPreviousChat = (Button) chatroomButton.lookup("#btnAccessPreviousChat");
-
-                btnAccessPreviousChat.setText("NEW ROOM");
-                btnAccessPreviousChat.setVisible(true);
-                btnAccessPreviousChat.setManaged(true);
-                btnAccessPreviousChat.setOnAction(e -> {
-                    try {
-                        btnGoToPreviousChat(e, room_id);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                });
-
-            } catch (Exception e){
-                throw new RuntimeException(e);
-            }
-
-            chatroomButton.setVisible(true);
-            chatroomButton.setManaged(true);
-            vbox_chatroom_container.getChildren().add(chatroomButton);
-            vbox_chatroom_container.layout();
-            vbox_chatroom_container.requestLayout();
-
-            System.out.println("how many chats after: " + vbox_chatroom_container.getChildren().size());
-        }
-
-        System.out.println("addded shd be");
     }
 }

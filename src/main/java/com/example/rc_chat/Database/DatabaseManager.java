@@ -218,4 +218,39 @@ public class DatabaseManager {
 
         return rooms;
     }
+
+    public ChatRoom getRoomInfo(int room_id){
+        ChatRoom room = null;
+        try (Connection conn = SQLConnection.getConnection();
+             PreparedStatement getUser = conn.prepareStatement("SELECT username FROM tblUser WHERE user_id = ?");
+             
+             PreparedStatement pStmt = conn.prepareStatement("SELECT user_1, user_2 FROM tblChatRoom WHERE room_id = ?")
+            ){
+
+            pStmt.setInt(1, room_id);
+            
+            ResultSet res = pStmt.executeQuery();
+            
+            while (res.next()){
+                int user_1 = res.getInt("user_1");
+                int user_2 = res.getInt("user_2");
+                
+                assert user_1 != 0 && user_2 != 0;
+                
+                int other_user = (user_1 != current_user.getUser_id()) ? user_1 : user_2;
+                getUser.setInt(1, other_user);
+                
+                ResultSet res2 = getUser.executeQuery();
+                res2.next();
+                
+                String other_username = res2.getString("username");
+                
+                room = new ChatRoom(room_id, user_1, user_2).setOtherUser(other_username);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+        return room;
+    }
 }
