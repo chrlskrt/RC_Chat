@@ -1,7 +1,9 @@
 package com.example.rc_chat.Database;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DialogEvent;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +22,7 @@ public class SQLConnection {
     public static final String USERNAME = "root";
     public static final String PASSWORD = "";
 
-    public static Connection getConnection (){
+    public static Connection getConnection () throws RuntimeException {
         Connection c = null;
 
         try {
@@ -30,15 +32,7 @@ public class SQLConnection {
             System.out.println("DB Connection success");
         } catch (SQLException | ClassNotFoundException e) {
             System.err.println("DATABASE IS NOT ONLINE");
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    Alert x = new Alert(Alert.AlertType.ERROR);
-                    x.setTitle("Database Offline");
-                    x.setContentText("Currently, our database is offline due to maintenance. \nPlease try again later.");
-                    x.showAndWait();
-                }
-            });
+            throw new RuntimeException();
         }
 
         return c;

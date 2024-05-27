@@ -23,7 +23,7 @@ public class DatabaseManager {
         return instance;
     }
 
-    private void initializeDB() {
+    private void initializeDB() throws RuntimeException{
         Statement stmt;
         try (Connection c = SQLConnection.getConnection()){
             stmt = c.createStatement();

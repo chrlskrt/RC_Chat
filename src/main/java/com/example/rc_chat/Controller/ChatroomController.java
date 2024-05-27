@@ -161,7 +161,7 @@ public class ChatroomController {
     *               It creates a BufferedReader from the static Client's socket InputStream,
     *               and does its necessary business. First it takes in the Room_ID and will
     *               indefinitely receive messages from other users until it receives a stopping
-    *               code (TODO LATER).
+    *               code.
     *
     * Additional: Platform.runLater works concurrently with the JavaFX Thread, so the Runnable it takes in runs on the JavaFX Thread, necessary for manipulating the Chats.*/
     public class IncomingReader extends Task<Void> {
