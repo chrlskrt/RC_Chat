@@ -7,6 +7,7 @@ import com.example.rc_chat.Database.User;
 import com.example.rc_chat.Database.dbStatus;
 import com.example.rc_chat.Server.ChatClient;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -42,7 +43,15 @@ public class RC_Chat extends Application {
         try {
             client = ChatClient.getInstance();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    Alert x = new Alert(Alert.AlertType.ERROR);
+                    x.setTitle("Server Offline");
+                    x.setContentText("Currently, our server is offline due to maintenance. \nPlease try again later.");
+                    x.showAndWait();
+                }
+            });
         }
     }
 
@@ -126,13 +135,6 @@ public class RC_Chat extends Application {
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
         Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-
-        // FULL SCREEN
-//        stage.setX(bounds.getMinX());
-//        stage.setY(bounds.getMinY());
-//        stage.setWidth(bounds.getWidth());
-//        stage.setHeight(bounds.getHeight());
 
         // loading the mainChat.fxml
         HomeController hc = fxmlLoader.getController();
@@ -161,6 +163,13 @@ public class RC_Chat extends Application {
         pf_logPassword.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if(kh.TabPressed(event)) {
                 btnLogInUser.requestFocus();
+            } if(kh.EnterPressed(event)) {
+                // TODO: HUHUHUHU IG ENTER, LOGIN
+//                try {
+//                    btnLogInUserClick(new ActionEvent());
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                }
             }
         });
 

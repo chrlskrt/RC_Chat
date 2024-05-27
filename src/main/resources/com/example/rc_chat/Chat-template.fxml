@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -11,6 +12,9 @@
             <Image backgroundLoading="true" url="https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="lbl_chatMessage" alignment="CENTER" layoutX="88.0" layoutY="18.0" prefHeight="44.0" prefWidth="290.0" style="-fx-background-color: #434E65; -fx-background-radius: 15px;" text="hi" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="100.0" />
+      <Label fx:id="lbl_chatMessage" alignment="CENTER" layoutX="88.0" layoutY="18.0" prefHeight="44.0" style="-fx-background-color: #434E65; -fx-background-radius: 20px;" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="75.0">
+         <padding>
+            <Insets left="15.0" right="15.0" />
+         </padding></Label>
    </children>
 </AnchorPane>

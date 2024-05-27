@@ -1,5 +1,8 @@
 package com.example.rc_chat.Database;
 
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -26,7 +29,16 @@ public class SQLConnection {
             c = DriverManager.getConnection(finalURL, USERNAME, PASSWORD);
             System.out.println("DB Connection success");
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.err.println("DATABASE IS NOT ONLINE");
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    Alert x = new Alert(Alert.AlertType.ERROR);
+                    x.setTitle("Database Offline");
+                    x.setContentText("Currently, our database is offline due to maintenance. \nPlease try again later.");
+                    x.showAndWait();
+                }
+            });
         }
 
         return c;

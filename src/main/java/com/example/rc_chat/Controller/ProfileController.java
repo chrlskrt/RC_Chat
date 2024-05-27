@@ -65,6 +65,7 @@ public class ProfileController {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("RChat");
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
 
         current_user.setPassword("");

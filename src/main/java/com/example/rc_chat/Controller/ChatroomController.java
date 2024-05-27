@@ -2,6 +2,7 @@ package com.example.rc_chat.Controller;
 
 import com.example.rc_chat.ChatMessage;
 import com.example.rc_chat.Database.DatabaseManager;
+import com.example.rc_chat.KeyHandlers;
 import com.example.rc_chat.RC_Chat;
 import com.example.rc_chat.Server.ChatClient;
 import javafx.application.Platform;
@@ -13,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -34,6 +36,15 @@ public class ChatroomController {
     public AnchorPane ap_chatroom;
     int room_id; //Current chat room ID, WILL CHANGE DEPENDING ON WHICH CHAT IT'S STILL ON ATM
     private HomeController parentController;
+    public KeyHandlers kh = new KeyHandlers();
+
+    public void initialize() {
+        txtareaMsg.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if(kh.EnterPressed(event)) {
+                btnSendChatClick();
+            }
+        });
+    }
 
 
     public void loadChatroom() throws IOException {
@@ -54,7 +65,7 @@ public class ChatroomController {
         this.room_id = room_id;
         loadChats();
     }
-    public void btnSendChatClick(ActionEvent actionEvent) {
+    public void btnSendChatClick() {
         String message = txtareaMsg.getText();
 
         if (message.isEmpty()){

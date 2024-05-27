@@ -11,4 +11,12 @@ public class KeyHandlers {
         }
         return false;
     }
+
+    public boolean EnterPressed(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER) {
+            event.consume();
+            return true;
+        }
+        return false;
+    }
 }

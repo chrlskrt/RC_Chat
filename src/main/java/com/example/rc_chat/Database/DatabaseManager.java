@@ -23,7 +23,7 @@ public class DatabaseManager {
         return instance;
     }
 
-    private void initializeDB(){
+    private void initializeDB() {
         Statement stmt;
         try (Connection c = SQLConnection.getConnection()){
             stmt = c.createStatement();
@@ -64,6 +64,8 @@ public class DatabaseManager {
             System.out.println("Database with TABLES created successfully.");
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (NullPointerException n) {
+            System.err.println("No SQL Connection detected");
         }
     }
 

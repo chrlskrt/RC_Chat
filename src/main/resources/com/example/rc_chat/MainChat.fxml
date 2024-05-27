@@ -5,6 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane id="chatroom" fx:id="apChatroom" maxHeight="540.0" maxWidth="1000.0" minHeight="540.0" minWidth="1000.0" prefHeight="540.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.HomeController">
    <stylesheets>
@@ -47,14 +48,13 @@
                </bottom>
                <center>
                   <AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                     <ImageView fx:id="imgProfile" fitHeight="50.0" fitWidth="50.0" layoutX="21.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 5;">
-                        <image>
-                           <Image backgroundLoading="true" url="https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg" />
-                        </image>
-                     </ImageView>
-                     <Label alignment="CENTER" contentDisplay="TOP" layoutX="88.0" layoutY="18.0" prefHeight="58.0" prefWidth="576.0" style="-fx-background-color: #434E65; -fx-background-radius: 10px;" text="TextFlow is a layout pane which manages a collection of text nodes. It allows for the display of rich text content, where different text nodes can have different styles and be arranged in a flow that wraps at the boundary of the pane. Would you like to know how to use it in your code?" textFill="WHITE" wrapText="true" />
-                     <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="326.0" layoutY="131.0" prefHeight="30.0" prefWidth="337.0" style="-fx-background-color: #ABB2C2; -fx-background-radius: 10px;" text="IM WORKING LATE CAUSE IM A SINGERRRRRRRRRRRRR" textAlignment="RIGHT" />
-                     <Label contentDisplay="CENTER" layoutX="88.0" layoutY="86.0" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #434E65; -fx-background-radius: 10px;" text="lorem ipsum my ASS" textAlignment="CENTER" textFill="WHITE" />
+                     <children>
+                        <Label layoutX="262.0" layoutY="138.0" text="Start chatting with friends!" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
                   </AnchorPane>
                </center>
             </BorderPane>

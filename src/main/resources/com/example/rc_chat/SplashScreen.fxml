@@ -11,7 +11,7 @@
       <URL value="@styles.css" />
    </stylesheets>
    <children>
-      <AnchorPane layoutX="79.0" layoutY="70.0" prefHeight="300.0" prefWidth="550.0" style="-fx-background-color: #1F283D; -fx-background-radius: 20px;">
+      <AnchorPane id="dropshadow" layoutX="79.0" layoutY="70.0" prefHeight="300.0" prefWidth="550.0" style="-fx-background-color: #1F283D; -fx-background-radius: 20px;">
          <children>
             <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="344.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -23,20 +23,20 @@
       
                   <TextField fx:id="tf_logUsername" layoutX="15.0" layoutY="21.0" promptText="Username" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px; -fx-text-fill:white" />
                   <PasswordField fx:id="pf_logPassword" layoutX="15.0" layoutY="58.0" promptText="Password" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px; -fx-text-fill:white" />
-                  <Button fx:id="btnLogInUser" layoutX="65.0" layoutY="103.0" mnemonicParsing="false" onAction="#btnLogInUserClick" style="-fx-background-color: white; -fx-background-radius: 15px; -fx-padding: 5px 20px 5px 20px;" text="Login" />
+                  <Button fx:id="btnLogInUser" layoutX="65.0" layoutY="107.0" mnemonicParsing="false" onAction="#btnLogInUserClick" style="-fx-background-color: white; -fx-background-radius: 15px; -fx-padding: 5px 20px 5px 20px;" text="Login" />
                   <Button fx:id="btnRegisterAcc" layoutX="86.0" layoutY="145.0" mnemonicParsing="false" onAction="#registerOnClick" style="-fx-background-color: #1F283D;" text="Create Account" textFill="WHITE" underline="true" />
                   <Label layoutX="29.0" layoutY="149.0" text="New here?" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <Label layoutX="323.0" layoutY="198.0" text="Log in with QR Code" textFill="WHITE">
+            <Label layoutX="339.0" layoutY="191.0" text="Log in with QR Code" textFill="WHITE">
                <font>
-                  <Font name="JetBrains Mono ExtraBold" size="15.0" />
+                  <Font name="Segoe UI Semibold" size="15.0" />
                </font></Label>
-            <Label layoutX="52.0" layoutY="36.0" text="Welcome to RChat" textFill="WHITE">
+            <Label layoutX="71.0" layoutY="50.0" text="Welcome to RChat" textFill="WHITE">
                <font>
-                  <Font name="JetBrains Mono ExtraBold" size="20.0" />
+                  <Font name="Segoe UI Semibold" size="20.0" />
                </font></Label>
-            <Label layoutX="305.0" layoutY="221.0" prefHeight="42.0" prefWidth="208.0" text="Scan this with the RChat mobile app to log in instantly." textFill="WHITE" wrapText="true">
+            <Label layoutX="314.0" layoutY="221.0" prefHeight="42.0" prefWidth="190.0" text="Scan this with the RChat mobile app to log in instantly." textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="13.0" />
                </font>

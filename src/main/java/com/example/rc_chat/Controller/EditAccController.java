@@ -1,13 +1,17 @@
 package com.example.rc_chat.Controller;
 
 import com.example.rc_chat.Database.SQLConnection;
+import com.example.rc_chat.RC_Chat;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -49,7 +53,14 @@ public class EditAccController {
 
     }
 
-    public void CancelEditOnClick(ActionEvent actionEvent) {
+    public void CancelEditOnClick() throws IOException {
+        AnchorPane a = apEditProf;
+        a.getScene().getStylesheets().clear();
 
+//        FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("Profile.fxml"));
+//        Parent p = fxmlLoader.load();
+
+        a.getChildren().clear();
+//        a.getChildren().add(p);
     }
 }
