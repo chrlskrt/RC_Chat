@@ -6,9 +6,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
@@ -22,11 +27,23 @@ public class EditAccController {
     public AnchorPane apEditProf;
     public PasswordField txt_newPass;
     public TextField txt_newUsern;
+    public Circle circleImg;
+    public Label lbl_username;
+    public Label lbl_userID;
 
     @FXML
     public void initialize() {
+        lbl_username.setText(current_user.getUsername());
+        lbl_userID.setText("#000" + String.valueOf(current_user.getUser_id()));
+        setProfilePicture();
+
         txt_newUsern.setText(current_user.getUsername());
         txt_newPass.setText(current_user.getPassword());
+    }
+
+    public void setProfilePicture() {
+        Image img = new Image("https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg", false);
+        circleImg.setFill(new ImagePattern(img));
     }
 
     public void SaveEditAccOnClick(ActionEvent actionEvent) {
@@ -54,13 +71,20 @@ public class EditAccController {
     }
 
     public void CancelEditOnClick() throws IOException {
-        AnchorPane a = apEditProf;
-        a.getScene().getStylesheets().clear();
+//        AnchorPane a = apEditProf;
+//        a.getScene().getStylesheets().clear();
+        HBox ap_profile = (HBox) apEditProf.getParent();
 
-//        FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("Profile.fxml"));
-//        Parent p = fxmlLoader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("Profile.fxml"));
+        AnchorPane p = fxmlLoader.load();
+//
+//        a.getChildren().clear();
+////        a.getChildren().add(p);
+        ProfileController pc = fxmlLoader.getController();
+        pc.loadPage();
 
-        a.getChildren().clear();
-//        a.getChildren().add(p);
+        ap_profile.getChildren().remove(1);
+        ap_profile.getChildren().add(p);
+        HBox.setHgrow(p, Priority.ALWAYS);
     }
 }

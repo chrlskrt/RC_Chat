@@ -15,6 +15,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -27,6 +29,7 @@ import java.sql.SQLData;
 import java.sql.SQLException;
 
 import static com.example.rc_chat.RC_Chat.current_user;
+import static javafx.application.Application.getUserAgentStylesheet;
 
 public class ProfileController {
     public Label lbl_username , lbl_userID;
@@ -34,6 +37,7 @@ public class ProfileController {
     public Circle circleImg;
     public HomeController hc;
     public LoginRegisterController lgr;
+    public AnchorPane ap_Profile;
 
     public void setProfilePicture() {
         Image img = new Image("https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg", false);
@@ -80,18 +84,13 @@ public class ProfileController {
     }
 
     public void EditAccOnClick() throws IOException {
-        AnchorPane a = profButtons;
-        a.getScene().getStylesheets().clear();
-
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("EditAccount.fxml"));
         Parent p = fxmlLoader.load();
 
-        a.getChildren().clear();
-        a.getChildren().add(p);
-    }
-
-    public void exitEdit() {
-
+        HBox home_box = (HBox) ap_Profile.getParent();
+        home_box.getChildren().remove(1);
+        home_box.getChildren().add(p);
+        HBox.setHgrow(p, Priority.ALWAYS);
     }
 
 }
