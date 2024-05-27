@@ -50,6 +50,8 @@ public class ChatroomController {
     public void loadChatroom() throws IOException {
         Thread t = new Thread(new IncomingReader()); //STARTS MESSAGE READER, SEE LINE 91 FOR MORE DETAILS
         t.start();
+
+        txtareaMsg.setEditable(false);
     }
 
     public void loadPrevChatroom() throws IOException {
@@ -66,6 +68,11 @@ public class ChatroomController {
         loadChats();
     }
     public void btnSendChatClick() {
+        if (room_id == 0){
+            showAlert(Alert.AlertType.INFORMATION, "You're not connected with anyone,yet.");
+            return;
+        }
+
         String message = txtareaMsg.getText();
 
         if (message.isEmpty()){
@@ -163,6 +170,9 @@ public class ChatroomController {
         protected Void call() throws Exception {
             try{
                 BufferedReader in = new BufferedReader(new InputStreamReader(ChatClient.getSocket().getInputStream())); //Takes in messages from the server
+                Platform.runLater(()->{
+                    showStatus("Connecting you with someone...");
+                });
                 room_id = Integer.parseInt(in.readLine()); // scans the room ID first
                 Platform.runLater(()-> {
                     try {
@@ -225,6 +235,30 @@ public class ChatroomController {
     }
     public void setNewChatButton() throws IOException {
         parentController.addNewChatButton(room_id);
+
+        showStatus("You're now connected with someone!");
     }
 
+    private void showStatus(String message){
+        FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("Status-Template.fxml"));
+        AnchorPane status_component = null;
+
+        try {
+            status_component = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Label lbl_message = (Label) status_component.lookup("#lbl_status");
+
+            lbl_message.setText(message);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        vbox_chat_container.getChildren().add(status_component);
+
+        txtareaMsg.setEditable(true);
+    }
 }

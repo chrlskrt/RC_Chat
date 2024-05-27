@@ -37,27 +37,31 @@
                      </children></AnchorPane>
                </children>
             </AnchorPane>
-            <BorderPane fx:id="bp_mainChat" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" HBox.hgrow="ALWAYS">
-               <bottom>
-                  <AnchorPane prefHeight="70.0" prefWidth="500.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <TextArea fx:id="txtareaMsg" layoutX="26.0" layoutY="15.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="576.0" />
-                        <Button fx:id="btnSendChat" layoutX="622.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-padding: 11px;" text="SEND" />
-                     </children>
-                  </AnchorPane>
-               </bottom>
-               <center>
-                  <AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label layoutX="262.0" layoutY="138.0" text="Start chatting with friends!" textFill="WHITE">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-               </center>
-            </BorderPane>
+            <AnchorPane HBox.hgrow="ALWAYS">
+               <children>
+                  <BorderPane fx:id="bp_mainChat" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <bottom>
+                        <AnchorPane minWidth="-Infinity" prefHeight="70.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <TextArea fx:id="txtareaMsg" editable="false" layoutX="26.0" layoutY="15.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="576.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="90.0" />
+                              <Button fx:id="btnSendChat" layoutX="622.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-padding: 11px;" text="SEND" AnchorPane.rightAnchor="25.0" />
+                           </children>
+                        </AnchorPane>
+                     </bottom>
+                     <center>
+                        <AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label alignment="CENTER" layoutX="262.0" layoutY="138.0" text="Start chatting with friends!" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
          </children>
       </HBox>
    </children>
