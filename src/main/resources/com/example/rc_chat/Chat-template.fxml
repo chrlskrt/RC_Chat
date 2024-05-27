@@ -5,12 +5,16 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.shape.Circle?>
 <AnchorPane prefHeight="80.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="imgProfile" fitHeight="50.0" fitWidth="50.0" layoutX="21.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 5;" AnchorPane.leftAnchor="15.0">
+      <ImageView fx:id="imgProfile" fitHeight="50.0" fitWidth="50.0" layoutX="21.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 100;" AnchorPane.leftAnchor="15.0">
          <image>
-            <Image backgroundLoading="true" url="https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg" />
+            <Image url="https://i.pinimg.com/564x/98/1d/6b/981d6b2e0ccb5e968a0618c8d47671da.jpg"/>
          </image>
+         <clip>
+            <Circle radius="25" centerX="25" centerY="25"/>
+         </clip>
       </ImageView>
       <Label fx:id="lbl_chatMessage" alignment="CENTER" layoutX="88.0" layoutY="18.0" prefHeight="44.0" style="-fx-background-color: #434E65; -fx-background-radius: 20px;" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="75.0">
          <padding>

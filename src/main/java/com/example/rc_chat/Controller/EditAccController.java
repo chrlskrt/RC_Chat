@@ -1,5 +1,6 @@
 package com.example.rc_chat.Controller;
 
+import com.example.rc_chat.Database.DatabaseManager;
 import com.example.rc_chat.Database.SQLConnection;
 import com.example.rc_chat.RC_Chat;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -38,11 +40,10 @@ public class EditAccController {
         setProfilePicture();
 
         txt_newUsern.setText(current_user.getUsername());
-        txt_newPass.setText(current_user.getPassword());
     }
 
     public void setProfilePicture() {
-        Image img = new Image("https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg", false);
+        Image img = new Image("https://i.pinimg.com/564x/98/1d/6b/981d6b2e0ccb5e968a0618c8d47671da.jpg", false);
         circleImg.setFill(new ImagePattern(img));
     }
 
@@ -52,22 +53,7 @@ public class EditAccController {
         newusername = txt_newUsern.getText();
         newpassword = txt_newPass.getText();
 
-        try(Connection c = SQLConnection.getConnection();
-            PreparedStatement stmt = c.prepareStatement("UPDATE tbluser SET username = ?, password = ? WHERE user_id = ?")) {
-
-            stmt.setString(1,newusername);
-            stmt.setString(2,newpassword);
-            stmt.setInt(3,current_user.getUser_id());
-
-            current_user.setUsername(newusername);
-            current_user.setPassword(newpassword);
-
-            stmt.executeUpdate();
-            System.out.println("Edited real");
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        DatabaseManager.getInstance().updateUserDetails(newusername,newpassword);
     }
 
     public void CancelEditOnClick() throws IOException {

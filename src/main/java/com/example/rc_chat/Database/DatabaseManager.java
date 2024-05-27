@@ -119,7 +119,7 @@ public class DatabaseManager {
                 return dbStatus.LOGIN_USER_NOT_FOUND;
             }
 
-            String hash_pass = SHA256.toHexString(SHA256.getSHA(MD5_Hash.getMd5(password)));
+            String hash_pass = hashPassword(password);
             getUser.setString(1, username);
             getUser.setString(2, hash_pass);
             ResultSet res = getUser.executeQuery();
@@ -140,6 +140,10 @@ public class DatabaseManager {
         }
 
         return dbStatus.LOGIN_SUCCESS;
+    }
+
+    private String hashPassword(String password) throws NoSuchAlgorithmException {
+        return SHA256.toHexString(SHA256.getSHA(MD5_Hash.getMd5(password)));
     }
 
     public ArrayList<ChatMessage> getMessages (int room_id){
@@ -270,5 +274,32 @@ public class DatabaseManager {
         }
         
         return room;
+    }
+
+    public void updateUserDetails(String newusername, String newpassword) {
+        try(Connection c = SQLConnection.getConnection();
+            PreparedStatement stmt = c.prepareStatement("UPDATE tbluser SET username = ?, password = ? WHERE user_id = ?")) {
+
+            if(newpassword.isEmpty()) {
+                newpassword = current_user.getPassword();
+            } else {
+                newpassword = DatabaseManager.getInstance().hashPassword(newpassword);
+            }
+
+            stmt.setString(1,newusername);
+            stmt.setString(2,newpassword);
+            stmt.setInt(3,current_user.getUser_id());
+
+            current_user.setUsername(newusername);
+            current_user.setPassword(newpassword);
+
+            stmt.executeUpdate();
+            System.out.println("Edited real");
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

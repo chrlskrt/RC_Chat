@@ -5,6 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane id="chatroom" fx:id="apChatroom" maxHeight="540.0" maxWidth="1000.0" minHeight="540.0" minWidth="1000.0" prefHeight="540.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.HomeController">
@@ -27,41 +28,45 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                      <children>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="21.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imgProfile" fitHeight="50.0" fitWidth="50.0" layoutX="21.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 100;" AnchorPane.leftAnchor="15.0">
                            <image>
-                              <Image backgroundLoading="true" url="https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg" />
+                              <Image url="https://i.pinimg.com/564x/98/1d/6b/981d6b2e0ccb5e968a0618c8d47671da.jpg" />
                            </image>
+                           <clip>
+                              <Circle centerX="25" centerY="25" radius="25" />
+                           </clip>
                         </ImageView>
                         <Button fx:id="btnProfile" layoutX="87.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnGoToProfileClick" prefHeight="17.0" prefWidth="110.0" style="-fx-background-color: white; -fx-padding: 5px 20px 5px 20px; -fx-background-radius: 10px;" text="Profile" />
                         <Label fx:id="lblUsername" layoutX="87.0" layoutY="16.0" text="USERNAME" textFill="WHITE" />
                      </children></AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane HBox.hgrow="ALWAYS">
-               <children>
-                  <BorderPane fx:id="bp_mainChat" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <bottom>
-                        <AnchorPane minWidth="-Infinity" prefHeight="70.0" prefWidth="500.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <TextArea fx:id="txtareaMsg" editable="false" layoutX="26.0" layoutY="15.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="576.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="90.0" />
-                              <Button fx:id="btnSendChat" layoutX="622.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-padding: 11px;" text="SEND" AnchorPane.rightAnchor="25.0" />
-                           </children>
-                        </AnchorPane>
-                     </bottom>
-                     <center>
-                        <AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label alignment="CENTER" layoutX="262.0" layoutY="138.0" text="Start chatting with friends!" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </center>
-                  </BorderPane>
-               </children>
-            </AnchorPane>
+            <BorderPane fx:id="bp_mainChat" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" HBox.hgrow="ALWAYS">
+               <bottom>
+                  <AnchorPane prefHeight="70.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextArea fx:id="txtareaMsg" layoutX="26.0" layoutY="15.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="576.0" />
+                        <Button fx:id="btnSendChat" layoutX="622.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-padding: 11px;" text="SEND" />
+                     </children>
+                  </AnchorPane>
+               </bottom>
+               <center>
+                  <AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="216.0" layoutY="184.0" text="Click on &quot;Start a Chat&quot; to get connected!" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="295.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="https://i.ibb.co/rMcfV4C/RC-COLA.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
          </children>
       </HBox>
    </children>

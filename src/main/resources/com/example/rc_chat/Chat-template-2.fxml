@@ -2,19 +2,13 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="80.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="70.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="lbl_chatOwnMessage" alignment="CENTER" layoutX="293.0" layoutY="20.0" prefHeight="40.0" style="-fx-background-color: #ABB2C2; -fx-background-radius: 20px;" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP" AnchorPane.rightAnchor="75.0">
+      <Label fx:id="lbl_chatOwnMessage" wrapText="true" maxWidth="500.0" alignment="CENTER" layoutX="340.0" layoutY="15.0" prefHeight="40.0" style="-fx-background-color: #ABB2C2; -fx-background-radius: 20px;" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP" AnchorPane.rightAnchor="30.0">
          <padding>
             <Insets left="15.0" right="15.0" />
          </padding></Label>
-      <ImageView fx:id="imgProfile" fitHeight="50.0" fitWidth="50.0" layoutX="336.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 5;" AnchorPane.rightAnchor="15.0">
-         <image>
-            <Image backgroundLoading="true" url="https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

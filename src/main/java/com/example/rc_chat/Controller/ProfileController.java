@@ -40,7 +40,7 @@ public class ProfileController {
     public AnchorPane ap_Profile;
 
     public void setProfilePicture() {
-        Image img = new Image("https://i.pinimg.com/736x/a9/e5/79/a9e57939084a578206e77566b685c47b.jpg", false);
+        Image img = new Image("https://i.pinimg.com/564x/98/1d/6b/981d6b2e0ccb5e968a0618c8d47671da.jpg", false);
         circleImg.setFill(new ImagePattern(img));
     }
 
@@ -54,7 +54,7 @@ public class ProfileController {
         try(Connection c = SQLConnection.getConnection();
             PreparedStatement stmt = c.prepareStatement("DELETE FROM tbluser WHERE user_id = ?")) {
             stmt.setInt(1,current_user.getUser_id());
-//            stmt.executeUpdate();
+            stmt.executeUpdate();
             goToSplashScreen(actionEvent);
         } catch (SQLException | IOException e) {
             e.printStackTrace();

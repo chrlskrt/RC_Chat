@@ -10,7 +10,7 @@
       <URL value="@styles.css" />
    </stylesheets>
    <children>
-      <AnchorPane layoutX="200.0" layoutY="70.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #1F283D; -fx-background-radius: 20px;">
+      <AnchorPane layoutX="200.0" id="dropshadow" layoutY="70.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #1F283D; -fx-background-radius: 20px;">
          <children>
 
             <TextField fx:id="tf_regUsername" layoutX="66.0" layoutY="96.0" promptText="Username" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px;-fx-text-fill:white" />

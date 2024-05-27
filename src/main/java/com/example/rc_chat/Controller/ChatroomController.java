@@ -10,10 +10,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -30,6 +27,7 @@ import static com.example.rc_chat.RC_Chat.dbManager;
 
 public class ChatroomController {
     public VBox vbox_chat_container;
+    public ScrollPane chatScrollPane;
     public Button btnSendChat;
     public TextArea txtareaMsg;
     public Alert alert = new Alert(Alert.AlertType.NONE);
@@ -43,6 +41,10 @@ public class ChatroomController {
             if(kh.EnterPressed(event)) {
                 btnSendChatClick();
             }
+        });
+
+        vbox_chat_container.heightProperty().addListener((observable, oldValue, newValue) -> {
+            chatScrollPane.setVvalue(1.0); // 1.0 means the bottom of the ScrollPane
         });
     }
 

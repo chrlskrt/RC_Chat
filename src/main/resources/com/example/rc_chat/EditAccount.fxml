@@ -7,6 +7,7 @@
 <?import javafx.scene.text.*?>
 
 <!-- Angel UI -->
+
 <AnchorPane fx:id="apEditProf" minHeight="400.0" minWidth="700.0" prefHeight="425.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.EditAccController">
     <stylesheets>
         <URL value="@styles.css" />
@@ -14,9 +15,9 @@
     <children>
         <BorderPane maxHeight="390.0" minHeight="390.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
-                <AnchorPane minWidth="543.0" prefHeight="137.0" prefWidth="700.0" style="-fx-background-color: pink; -fx-background-radius: 0px 20px 0px 0px;" BorderPane.alignment="CENTER">
+                <AnchorPane minWidth="543.0" prefHeight="137.0" prefWidth="700.0" style="-fx-background-color: #7b2cbf; -fx-background-radius: 0px 20px 0px 0px;" BorderPane.alignment="CENTER">
                     <children>
-                        <Label layoutX="181.0" layoutY="112.0" style="-fx-background-color: #49B572; -fx-background-radius: 15px; -fx-label-padding: 0px 20px 0px 20px;" text="Online" textFill="WHITE">
+                        <Label layoutX="181.0" layoutY="101.0" style="-fx-background-color: #49B572; -fx-background-radius: 15px; -fx-label-padding: 0px 20px 0px 20px;" text="Online" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="15.0" />
                             </font>
@@ -48,7 +49,7 @@
                                     <Font size="15.0" />
                                 </font></Button>
                         </AnchorPane>
-                        <Circle fx:id="circleImg" fill="DODGERBLUE" layoutX="108.0" layoutY="10.0" radius="60.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fx:id="circleImg" fill="DODGERBLUE" layoutX="108.0" radius="60.0" stroke="BLACK" strokeType="INSIDE" />
                         <Label fx:id="lbl_username" layoutX="193.0" text="." textFill="WHITE">
                             <font>
                                 <Font size="30.0" />
