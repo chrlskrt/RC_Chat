@@ -5,8 +5,8 @@ import java.net.*;
 
 import static com.example.rc_chat.RC_Chat.current_user;
 public class ChatClient {
-    private final String IP_ADDRESS = "localhost";
-    private final int PORT = 1803;
+    private final String IP_ADDRESS = "147.185.221.19";
+    private final int PORT = 56446;
     private static ChatClient instance; // Singleton instance sa ChatClient
     private static PrintWriter out; // Prints out to the Main Server
     private static Socket socket = null; // MAIN CONNECTION TO THE SERVER, NEEDS AN IP AND PORT TO KNOW WHERE TO CONNECT
