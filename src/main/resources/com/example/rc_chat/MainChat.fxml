@@ -43,26 +43,30 @@
             </AnchorPane>
             <BorderPane fx:id="bp_mainChat" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <bottom>
-                  <AnchorPane prefHeight="70.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="70.0" prefWidth="500.0" style="-fx-border-color: white;">
                      <children>
-                        <TextArea fx:id="txtareaMsg" layoutX="26.0" layoutY="15.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="576.0" />
-                        <Button fx:id="btnSendChat" layoutX="622.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-padding: 11px;" text="SEND" />
+                        <TextArea fx:id="txtareaMsg" layoutX="26.0" layoutY="15.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="576.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="100.0" />
+                        <Button fx:id="btnSendChat" layoutX="622.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-padding: 11px;" text="SEND" AnchorPane.rightAnchor="25.0" />
                      </children>
                   </AnchorPane>
                </bottom>
                <center>
-                  <AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;">
                      <children>
-                        <Label layoutX="216.0" layoutY="184.0" text="Click on &quot;Start a Chat&quot; to get connected!" textFill="WHITE">
+                        <Label alignment="CENTER" layoutX="216.0" layoutY="184.0" text="Click on &quot;Start a Chat&quot; to get connected!" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="295.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="https://i.ibb.co/rMcfV4C/RC-COLA.png" />
-                           </image>
-                        </ImageView>
+                        <HBox alignment="CENTER" layoutX="295.0" layoutY="72.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="https://i.ibb.co/rMcfV4C/RC-COLA.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
                      </children>
                   </AnchorPane>
                </center>
