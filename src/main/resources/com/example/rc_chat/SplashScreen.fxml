@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -11,36 +12,46 @@
       <URL value="@styles.css" />
    </stylesheets>
    <children>
-      <AnchorPane id="dropshadow" layoutX="79.0" layoutY="70.0" prefHeight="300.0" prefWidth="550.0" style="-fx-background-color: #1F283D; -fx-background-radius: 20px;">
+      <HBox fx:id="splashMainBox" layoutX="70.0" layoutY="61.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="344.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image backgroundLoading="true" url="https://i.ibb.co/ryNhnpm/frame-1.png" />
-               </image>
-            </ImageView>
-            <AnchorPane focusTraversable="true" layoutX="52.0" layoutY="77.0" prefHeight="186.0" prefWidth="208.0">
+            <AnchorPane id="dropshadow" maxHeight="-Infinity" prefHeight="300.0" prefWidth="550.0" style="-fx-background-color: #1F283D; -fx-background-radius: 20px;" HBox.hgrow="NEVER">
                <children>
-      
-                  <TextField fx:id="tf_logUsername" layoutX="15.0" layoutY="21.0" promptText="Username" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px; -fx-text-fill:white" />
-                  <PasswordField fx:id="pf_logPassword" layoutX="15.0" layoutY="58.0" promptText="Password" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px; -fx-text-fill:white" />
-                  <Button fx:id="btnLogInUser" layoutX="65.0" layoutY="107.0" mnemonicParsing="false" onAction="#btnLogInUserClick" style="-fx-background-color: white; -fx-background-radius: 15px; -fx-padding: 5px 20px 5px 20px;" text="Login" />
-                  <Button fx:id="btnRegisterAcc" layoutX="86.0" layoutY="145.0" mnemonicParsing="false" onAction="#registerOnClick" style="-fx-background-color: #1F283D;" text="Create Account" textFill="WHITE" underline="true" />
-                  <Label layoutX="29.0" layoutY="149.0" text="New here?" textFill="WHITE" />
+                  <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="344.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image backgroundLoading="true" url="https://i.ibb.co/ryNhnpm/frame-1.png" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane focusTraversable="true" layoutX="52.0" layoutY="77.0" prefHeight="186.0" prefWidth="208.0">
+                     <children>
+
+                        <TextField fx:id="tf_logUsername" layoutX="15.0" layoutY="21.0" promptText="Username" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px; -fx-text-fill:white" />
+                        <PasswordField fx:id="pf_logPassword" layoutX="15.0" layoutY="58.0" promptText="Password" style="-fx-background-color: #4B6172; -fx-padding: 5px 5px 5px 30px; -fx-text-fill:white" />
+                        <Button fx:id="btnLogInUser" layoutX="65.0" layoutY="107.0" mnemonicParsing="false" onAction="#btnLogInUserClick" style="-fx-background-color: white; -fx-background-radius: 15px; -fx-padding: 5px 20px 5px 20px;" text="Login" />
+                        <Button fx:id="btnRegisterAcc" layoutX="86.0" layoutY="145.0" mnemonicParsing="false" onAction="#registerOnClick" style="-fx-background-color: #1F283D;" text="Create Account" textFill="WHITE" underline="true" />
+                        <Label layoutX="29.0" layoutY="149.0" text="New here?" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+                  <Label layoutX="339.0" layoutY="191.0" text="Log in with QR Code" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Semibold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="71.0" layoutY="50.0" text="Welcome to RChat" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Semibold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="314.0" layoutY="221.0" prefHeight="42.0" prefWidth="190.0" text="Scan this with the RChat mobile app to log in instantly." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
                </children>
+               <HBox.margin>
+                  <Insets bottom="61.0" left="70.0" right="70.0" top="61.0" />
+               </HBox.margin>
             </AnchorPane>
-            <Label layoutX="339.0" layoutY="191.0" text="Log in with QR Code" textFill="WHITE">
-               <font>
-                  <Font name="Segoe UI Semibold" size="15.0" />
-               </font></Label>
-            <Label layoutX="71.0" layoutY="50.0" text="Welcome to RChat" textFill="WHITE">
-               <font>
-                  <Font name="Segoe UI Semibold" size="20.0" />
-               </font></Label>
-            <Label layoutX="314.0" layoutY="221.0" prefHeight="42.0" prefWidth="190.0" text="Scan this with the RChat mobile app to log in instantly." textAlignment="CENTER" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-         </children></AnchorPane>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

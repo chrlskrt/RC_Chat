@@ -23,6 +23,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -31,6 +33,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 
 public class RC_Chat extends Application {
+    public HBox splashMainBox;
     @FXML
     private AnchorPane splashAnchor;
     @FXML
@@ -118,8 +121,11 @@ public class RC_Chat extends Application {
         }
 
         Parent p = FXMLLoader.load(getClass().getResource("LoadingScreen.fxml"));
-        splashAnchor.getChildren().clear();
-        splashAnchor.getChildren().add(p);
+//        splashAnchor.getChildren().clear();
+//        splashAnchor.getChildren().add(p);
+        splashMainBox.getChildren().clear();
+        splashMainBox.getChildren().add(p);
+        HBox.setHgrow(p, Priority.ALWAYS);
 
         PauseTransition pause = new PauseTransition(Duration.seconds(3));
         pause.setOnFinished(event -> {

@@ -41,7 +41,7 @@
                      </children></AnchorPane>
                </children>
             </AnchorPane>
-            <BorderPane fx:id="bp_mainChat" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" HBox.hgrow="ALWAYS">
+            <BorderPane fx:id="bp_mainChat" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <bottom>
                   <AnchorPane prefHeight="70.0" prefWidth="500.0" BorderPane.alignment="CENTER">
                      <children>
