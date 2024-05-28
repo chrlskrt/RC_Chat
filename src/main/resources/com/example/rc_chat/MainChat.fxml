@@ -15,7 +15,7 @@
    <children>
       <HBox fx:id="cHBox" layoutX="43.0" layoutY="30.0" minWidth="800.0" prefHeight="723.0" prefWidth="800.0" style="-fx-background-color: black; -fx-background-radius: 20px;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
          <children>
-            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="220.0" style="-fx-background-color: #37435D; -fx-background-radius: 20px 0px 0 20px;" HBox.hgrow="NEVER">
+            <AnchorPane fx:id="ap_toolbar" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="220.0" style="-fx-background-color: #37435D; -fx-background-radius: 20px 0px 0 20px;" HBox.hgrow="NEVER">
                <children>
                 <Button fx:id="btnStartChat" alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#btnStartChatClick" prefHeight="27.0" prefWidth="220.0" style="-fx-padding: 10px 20px 10px 20px; -fx-background-radius: 10px; -fx-background-color: white;" text="Start a Chat" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="25.0" />
                   <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="500.0" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="290.0" prefWidth="220.0" style="-fx-background-color: #37435D;" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
@@ -43,7 +43,7 @@
             </AnchorPane>
             <BorderPane fx:id="bp_mainChat" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <bottom>
-                  <AnchorPane prefHeight="70.0" prefWidth="500.0" style="-fx-border-color: white;">
+                  <AnchorPane prefHeight="70.0" prefWidth="500.0">
                      <children>
                         <TextArea fx:id="txtareaMsg" layoutX="26.0" layoutY="15.0" minHeight="-Infinity" prefHeight="40.0" prefWidth="576.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="100.0" />
                         <Button fx:id="btnSendChat" layoutX="622.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-padding: 11px;" text="SEND" AnchorPane.rightAnchor="25.0" />
@@ -51,7 +51,7 @@
                   </AnchorPane>
                </bottom>
                <center>
-                  <AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: yellow;">
+                  <AnchorPane minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <Label alignment="CENTER" layoutX="216.0" layoutY="184.0" text="Click on &quot;Start a Chat&quot; to get connected!" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <font>

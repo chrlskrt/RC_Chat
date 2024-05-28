@@ -33,6 +33,8 @@ public class HomeController {
     public Alert alert = new Alert(Alert.AlertType.NONE);
     @FXML
     public VBox vbox_chatroom_container;
+    public Button btnStartChat;
+    public AnchorPane ap_toolbar;
 
     @FXML
     public void initialize() {
@@ -58,6 +60,9 @@ public class HomeController {
     }
 
     public void btnStartChatClick(ActionEvent event) throws IOException {
+        btnStartChat.setDisable(true);
+//        ap_toolbar.setDisable(true);
+        vbox_chatroom_container.setDisable(true);
         FXMLLoader fxmlLoader = new FXMLLoader(RC_Chat.class.getResource("Chatroom-template.fxml"));
         AnchorPane chat_component = fxmlLoader.load();
 
@@ -116,6 +121,9 @@ public class HomeController {
     }
 
     public void addChatButton(ChatRoom room){
+        btnStartChat.setDisable(false);
+//        ap_toolbar.setDisable(false);
+        vbox_chatroom_container.setDisable(false);
         if (Platform.isFxApplicationThread()){
             FXMLLoader loader = new FXMLLoader(RC_Chat.class.getResource("Chat-Button-Template.fxml"));
             AnchorPane chatroomButton;
