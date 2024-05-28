@@ -43,7 +43,7 @@ public class EditAccController {
     }
 
     public void setProfilePicture() {
-        Image img = new Image("https://i.pinimg.com/564x/98/1d/6b/981d6b2e0ccb5e968a0618c8d47671da.jpg", false);
+        Image img = new Image("https://i.ibb.co/Ht4pQ6d/profilepic.png", false);
         circleImg.setFill(new ImagePattern(img));
     }
 

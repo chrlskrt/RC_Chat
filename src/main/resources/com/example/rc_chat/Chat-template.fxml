@@ -10,7 +10,7 @@
    <children>
       <ImageView fx:id="imgProfile" fitHeight="50.0" fitWidth="50.0" layoutX="21.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 100;" AnchorPane.leftAnchor="15.0">
          <image>
-            <Image url="https://i.pinimg.com/564x/98/1d/6b/981d6b2e0ccb5e968a0618c8d47671da.jpg"/>
+            <Image url="https://i.ibb.co/Ht4pQ6d/profilepic.png"/>
          </image>
          <clip>
             <Circle radius="25" centerX="25" centerY="25"/>

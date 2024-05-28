@@ -13,7 +13,7 @@
    <children>
       <BorderPane maxHeight="390.0" minHeight="390.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <AnchorPane minWidth="543.0" prefHeight="137.0" prefWidth="700.0" style="-fx-background-color: #7b2cbf; -fx-background-radius: 0px 20px 0px 0px;" BorderPane.alignment="CENTER">
+            <AnchorPane minWidth="543.0" prefHeight="137.0" prefWidth="700.0" style="-fx-background-color: #514C89; -fx-background-radius: 0px 20px 0px 0px;" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutX="181.0" layoutY="101.0" style="-fx-background-color: #49B572; -fx-background-radius: 15px; -fx-label-padding: 0px 20px 0px 20px;" text="Online" textFill="WHITE">
                      <font>

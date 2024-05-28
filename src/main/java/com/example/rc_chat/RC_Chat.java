@@ -92,6 +92,7 @@ public class RC_Chat extends Application {
     }
 
     public void btnLogInUserClick(ActionEvent actionEvent) throws IOException {
+
         logregcon = new LoginRegisterController();
         String username = tf_logUsername.getText();
         String password = pf_logPassword.getText();

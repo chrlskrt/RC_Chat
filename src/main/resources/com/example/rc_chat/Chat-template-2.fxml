@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="70.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="lbl_chatOwnMessage" wrapText="true" maxWidth="500.0" alignment="CENTER" layoutX="340.0" layoutY="15.0" prefHeight="40.0" style="-fx-background-color: #ABB2C2; -fx-background-radius: 20px;" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP" AnchorPane.rightAnchor="30.0">
+      <Label fx:id="lbl_chatOwnMessage" alignment="CENTER" layoutX="340.0" layoutY="15.0" maxWidth="500.0" prefHeight="40.0" style="-fx-background-color: #ECECEC; -fx-background-radius: 20px;" textAlignment="RIGHT" textFill="#434e65" textOverrun="CLIP" wrapText="true" AnchorPane.rightAnchor="30.0">
          <padding>
             <Insets left="15.0" right="15.0" />
          </padding></Label>

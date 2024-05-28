@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="ap_chatroom" minWidth="700.0" prefHeight="720.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.ChatroomController">
+<AnchorPane fx:id="ap_chatroom" minWidth="700.0" prefHeight="720.0" style="-fx-background-radius: 0px 0px 20px 0px;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rc_chat.Controller.ChatroomController">
    <children>
-      <BorderPane prefHeight="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane prefHeight="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 20px 0px; -fx-border-radius: 0px 0px 20px 0px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
             <AnchorPane minWidth="468.0" prefHeight="70.0" BorderPane.alignment="CENTER">
                <children>
@@ -15,11 +15,11 @@
             </AnchorPane>
          </bottom>
          <center>
-            <AnchorPane BorderPane.alignment="CENTER">
+            <AnchorPane style="-fx-background-radius: 0px 0px 0px 0px; -fx-border-radius: 0px 0px 20px 0px;" BorderPane.alignment="CENTER">
                <children>
-                  <ScrollPane fx:id="chatScrollPane" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ScrollPane fx:id="chatScrollPane" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 0px 20px 0px; -fx-border-radius: 0px 0px 20px 0px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
-                        <VBox fx:id="vbox_chat_container" alignment="BOTTOM_CENTER" prefHeight="200.0" style="-fx-background-color: #1F283D;" />
+                        <VBox fx:id="vbox_chat_container" alignment="BOTTOM_CENTER" prefHeight="200.0" style="-fx-background-color: #1F283D; -fx-background-radius: 0px 20px 0px 0px;" />
                      </content>
                   </ScrollPane>
                </children>
